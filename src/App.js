@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import "./App.css"
+import Navbar from './Component/NavBar'
+import Basic from './Component/Basic'
 
-function App() {
+const App = () => {
+
+  const current_theme=localStorage.getItem('current_theme');
+  const[theme, setTheme]=useState(current_theme ? current_theme : 'light');
+
+
+  useEffect(()=>{
+    localStorage.setItem('current_theme',theme);
+  },[theme])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${theme}`}>
+      
+      <div className='Nav'>
+        <Navbar theme={theme} setTheme={setTheme}/>
+      </div>
+
+      <div className={`Container ${theme}`}>
+        <Basic />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
