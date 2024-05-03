@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import './NavBar.css'
-import logo_light from '../Assets/Dark.png'
-import logo_dark from '../Assets/light.png'
-import search_dark from '../Assets/search_dark.png';
-import search_light from '../Assets/search_light.png';
+import logo_light from '../../Assets/Dark.png'
+import logo_dark from '../../Assets/light.png'
+import search_dark from '../../Assets/search_dark.png';
+import search_light from '../../Assets/search_light.png';
 
 const NavBar = ({theme, setTheme}) => {
 

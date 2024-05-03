@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./App.css"
-import Navbar from './Component/NavBar'
-import Basic from './Component/Basic'
+import Navbar from './Component/NavBar/NavBar'
+import Basic from './Component/Explore/Explore'
 
 const App = () => {
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Basic.css'
+import './Explore.css'
 
 const Basic = () => {
   return (
