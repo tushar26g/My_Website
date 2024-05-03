@@ -151,7 +151,15 @@ ul.open{
     order: 1;
     flex-direction: column-reverse;
     padding: 10px;
-    padding-right: 40px;
+    padding-right: 7%;
   }
 
+  .search-box{
+    margin-top: 15px;
+  }
+
+  .Login{
+    margin-top: 10px;
+    margin-right: 10px;
+  }
 }
