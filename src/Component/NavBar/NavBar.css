@@ -23,6 +23,8 @@
   cursor: pointer;
 }
 
+
+
 ul{
   display: flex;
   align-items:end;
@@ -95,8 +97,11 @@ li{
   color: #222;
 }
 
+.dark .right-menu{
+  background-color: #4a4c5c;
+}
+
 li:hover{
-  /* color: Red; */
   text-decoration: underline;
 }
 
@@ -121,11 +126,11 @@ li:hover{
 }
 
 
-ul.open{
+.right-menu.open{
   display: flex;
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1000px){
   .Menu{
     display: flex;
   }
@@ -136,30 +141,31 @@ ul.open{
     padding: 10px 4%;
     height: 50px;
   }
-
+/* 
   .toggle-icon{
     display: none;
+  } */
+
+  .right-menu{
+    display: none;
+    position: absolute; /* Fix the menu position */
+    top: 0; /* Position at the top of the viewport */
+    right: 0; /* Position at the right side of the viewport */
+    flex-direction: row-reverse;
+    background: #fda521;
+    padding: 10px;
+    padding-right: 40px;
+    z-index: 1000;
+    margin-top: 50px;
+    margin-right: 3px;
   }
+
 
   ul{
-    display: none;
-    flex-direction: column;
-    /* text-align: left; */
-    /* align-items: end; */
-    margin-left: 160px;
-    background: red;
-    order: 1;
-    flex-direction: column-reverse;
-    padding: 10px;
-    padding-right: 7%;
+    display: block;
   }
 
-  .search-box{
-    margin-top: 15px;
-  }
-
-  .Login{
-    margin-top: 10px;
-    margin-right: 10px;
+  li{
+    display: block;
   }
 }
