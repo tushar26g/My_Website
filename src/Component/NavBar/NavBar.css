@@ -10,6 +10,10 @@
   transition: 0.5s;
 }
 
+.right-menu{
+  transition: 0.3s;
+}
+
 .active{
   background-color: green;
 }
@@ -22,8 +26,6 @@
   align-items: center;
   cursor: pointer;
 }
-
-
 
 ul{
   display: flex;
@@ -80,6 +82,29 @@ li{
   cursor: pointer;
 }
 
+/* CSS for Sign-in Button */
+.Login {
+  background-color: #E9E3D5; /* Green background */
+  color: #222; /* White text */
+  padding: 10px 20px; /* Padding */
+  margin-bottom: 5px;
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor on hover */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect */
+.Login:hover {
+  background-color: #4a4c5c;
+  color: #fff;
+}
+ .dark .Login:hover{
+  background-color: #fda521;
+  color: #222;
+ }
+
 .dark.navbar{
   background: #4a4c5c;
   color: #fff;
@@ -102,7 +127,8 @@ li{
 }
 
 li:hover{
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  text-decoration:underline;
 }
 
 
@@ -153,7 +179,7 @@ li:hover{
     right: 0; /* Position at the right side of the viewport */
     flex-direction: row-reverse;
     background: #fda521;
-    padding: 10px;
+    padding: 13px;
     padding-right: 40px;
     z-index: 1000;
     margin-top: 50px;
@@ -167,5 +193,6 @@ li:hover{
 
   li{
     display: block;
+    padding: 5px;
   }
 }
