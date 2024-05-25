@@ -33,9 +33,9 @@ const DataFetchingComponent = () => {
         // console.log(item),
         <div key={item._id} className="box">
           
-          <p>Anushka</p>
           <h2>{item.company}</h2>
-          <p>{item.vacansy}</p>
+          <p>vacansy: {item.vacansy}</p>
+          <p>location: {item.location}</p>
         </div>
       ))}
     </div>

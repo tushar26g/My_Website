@@ -1,20 +1,21 @@
-.navbar{
+.navbar {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #fda521;
-  border-bottom : #D0CEC8 3px solid;
+  border-bottom: #D0CEC8 3px solid;
   padding: 15px 5%;
   height: 70px;
   transition: 0.5s;
+  color: #131313;
 }
 
-.right-menu{
+.right-menu {
   transition: 0.3s;
 }
 
-.active{
+.active {
   background-color: green;
 }
 
@@ -27,22 +28,35 @@
   cursor: pointer;
 }
 
-ul{
+.NavBar .logo a, .right-menu a {
+  color: #131313; /* Default color for links */
+  text-decoration: none;
+}
+
+.logo {
+  color: #131313;
+  text-decoration: none;
+}
+
+.right-menu a:hover {
+  text-decoration: underline; /* Optional: underline on hover */
+}
+
+ul {
   display: flex;
-  align-items:end;
-  list-style: center;
+  align-items: end;
+  list-style: none; /* Corrected from 'center' to 'none' */
   text-align: center;
 }
 
-
-li{
+li {
   display: inline-block;
   margin: 10px 20px;
   font-size: 18px;
   cursor: pointer;
 }
 
-.toggle-icon{
+.toggle-icon {
   padding: 5px;
   width: 50px;
   height: 50px;
@@ -51,7 +65,7 @@ li{
   margin-right: 30px;
 }
 
-.search-box{
+.search-box {
   margin-left: 25px;
   margin-bottom: 5px;
   display: flex;
@@ -62,7 +76,7 @@ li{
   height: 35px;
 }
 
-.search-box input{
+.search-box input {
   padding: 6px;
   padding-bottom: 3px;
   background: transparent;
@@ -73,19 +87,19 @@ li{
   max-width: 200px;
 }
 
-.search-box input::placeholder{
+.search-box input::placeholder {
   color: #fff;
 }
 
-.search-box img{
+.search-box img {
   width: 20px;
   cursor: pointer;
 }
 
 /* CSS for Sign-in Button */
 .Login {
-  background-color: #E9E3D5; /* Green background */
-  color: #222; /* White text */
+  background-color: #E9E3D5; /* Button background */
+  color: #222; /* Button text */
   padding: 10px 20px; /* Padding */
   margin-bottom: 5px;
   border: none; /* No border */
@@ -100,43 +114,49 @@ li{
   background-color: #4a4c5c;
   color: #fff;
 }
- .dark .Login:hover{
+
+.dark .Login:hover {
   background-color: #fda521;
   color: #222;
- }
+}
 
-.dark.navbar{
+.dark.navbar {
   background: #4a4c5c;
   color: #fff;
 }
 
-.dark .search-box{
+.dark .logo a, .dark .right-menu a {
+  color: #fff; /* White color for links in dark mode */
+}
+
+.dark .logo{
+  color: #fff;
+}
+
+.dark .search-box {
   background: #fff;
 }
 
-.dark .search-box input{
+.dark .search-box input {
   color: #222;
 }
 
-.dark .search-box input::placeholder{
+.dark .search-box input::placeholder {
   color: #222;
 }
 
-.dark .right-menu{
+.dark .right-menu {
   background-color: #4a4c5c;
 }
 
-li:hover{
-  /* text-decoration: underline; */
-  text-decoration:underline;
+li:hover {
+  text-decoration: underline;
 }
 
-
-
-.Menu{
+.Menu {
   display: none;
   position: absolute;
-  top:0.75rem;
+  top: 0.75rem;
   right: 0.5rem;
   flex-direction: column;
   justify-content: space-between;
@@ -144,35 +164,30 @@ li:hover{
   height: 28px;
 }
 
-.Menu span{
+.Menu span {
   height: 0.4rem;
   width: 100%;
   background-color: white;
   border-radius: 0.2rem;
 }
 
-
-.right-menu.open{
+.right-menu.open {
   display: flex;
 }
 
-@media (max-width: 800px){
-  .Menu{
+@media (max-width: 800px) {
+  .Menu {
     display: flex;
   }
 
-  .navbar{
+  .navbar {
     flex-direction: column;
     align-items: start;
     padding: 10px 4%;
     height: 50px;
   }
-/* 
-  .toggle-icon{
-    display: none;
-  } */
 
-  .right-menu{
+  .right-menu {
     display: none;
     position: absolute; /* Fix the menu position */
     top: 0; /* Position at the top of the viewport */
@@ -186,12 +201,11 @@ li:hover{
     margin-right: 3px;
   }
 
-
-  ul{
+  ul {
     display: block;
   }
 
-  li{
+  li {
     display: block;
     padding: 5px;
   }
