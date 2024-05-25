@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 import './Explore.css'
 import bcom from '../../Assets/Home/bcom.png'
 import caHub from '../../Assets/Home/group.jpg'
@@ -8,17 +10,20 @@ import intervivew from '../../Assets/Home/intervivew.jpg'
 import tax from '../../Assets/Home/Tax.png'
 import inter from '../../Assets/Home/Inter.jpg'
 import found from '../../Assets/Home/foundation.png'
+// import Job from '../JobWebsite/Job'
 
 const Basic = () => {
   return (
     <div className='Basic'>
-        <div className='HomeButton'>
-          <div><img src={caHub} alt="Example" /></div>
+      <div className='HomeButton'>
+        <Link to="/Job">
+          <div><img src={caHub} alt="CA Hub" /></div>
           <div className='content'>
             <h3>CA Hub</h3>
             <p>All CA</p>
           </div>
-        </div>
+        </Link>
+      </div>
         
         <div className='HomeButton'>
         <div><img src={found} alt="Example" /></div>
