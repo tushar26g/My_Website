@@ -1,0 +1,21 @@
+/* src/components/Home.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .Nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    z-index: 1000;
+  }
+  
+  .Container {
+    margin-top: 3%;
+    padding: 2%;
+  }
+  

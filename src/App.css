@@ -14,9 +14,3 @@
 .App.dark{
   background: #101415;
 }
-
-.Nav{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}

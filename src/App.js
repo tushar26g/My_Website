@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Navbar from './Component/NavBar/NavBar';
-import Basic from './Component/Explore/Explore';
 import Job from './Component/JobWebsite/Job';
 import ReadWeb from './Component/ReadingWebPage/readPage';
-
+import Home from './Component/Home/Home'
 const App = () => {
-  const current_theme = localStorage.getItem('current_theme');
-  const [theme, setTheme] = useState(current_theme ? current_theme : 'light');
+  // const current_theme = localStorage.getItem('current_theme');
+  // const [theme, setTheme] = useState(current_theme ? current_theme : 'light');
 
-  useEffect(() => {
-    localStorage.setItem('current_theme', theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   localStorage.setItem('current_theme', theme);
+  // }, [theme]);
 
   return (
     <Router>
-      <div className={`App ${theme}`}>
-        <div className='Nav'>
-          <Navbar theme={theme} setTheme={setTheme} />
-        </div>
-        <div className={`Container ${theme}`}>
+      <div className={`App`}>
+        <div>
           <Switch>
-            <Route path="/" exact component={Basic} />
+            <Route path="/" exact component={Home} />
             <Route path="/readWeb/:key" component={ReadWeb} />
             <Route path="/Job" component={Job} />
           </Switch>
