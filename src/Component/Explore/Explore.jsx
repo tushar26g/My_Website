@@ -12,6 +12,14 @@ import inter from '../../Assets/Home/Inter.jpg'
 import found from '../../Assets/Home/foundation.png'
 
 const Basic = () => {
+
+  const scrollToArticalship = () => {
+    const articalshipElement = document.getElementById('articalship'); // Get the element by its ID
+    if (articalshipElement) {
+      articalshipElement.scrollIntoView({ behavior: 'smooth' }); // Scroll to the element smoothly
+    }
+  };
+
   return (
     <div>
       <div className='Basic'>
@@ -57,7 +65,7 @@ const Basic = () => {
             </div>
           </div>
 
-          <div className='HomeButton'>
+          <div className='HomeButton' onClick={scrollToArticalship}>
           <div><img src={articalship} alt="Example" /></div>
             <div className='content'>
               <h3>Articleship</h3>
