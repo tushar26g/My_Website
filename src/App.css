@@ -14,3 +14,12 @@
 .App.dark{
   background: #101415;
 }
+
+.Nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  z-index: 1000;
+}

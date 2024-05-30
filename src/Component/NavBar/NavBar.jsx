@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import './NavBar.css';
 import logo_light from '../../Assets/Dark.png';
 import logo_dark from '../../Assets/light.png';
@@ -7,15 +7,26 @@ import search_dark from '../../Assets/search_dark.png';
 import search_light from '../../Assets/search_light.png';
 
 const NavBar = ({ theme, setTheme }) => {
+  const location = useLocation();
+  const history = useHistory();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const toggle_mode = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const handleHomeClick = () => {
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      history.push('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className={`navbar ${theme}`}>
-      <div className='NavBar'>
+      <div className='NavBar' onClick={handleHomeClick}>
         <Link to="/" className='logo'>
           <h1>
             <span>P</span>aisaTo
@@ -32,7 +43,7 @@ const NavBar = ({ theme, setTheme }) => {
 
       <div className={`right-menu ${menuOpen ? 'open' : ''}`}>
         <ul>
-          <li>
+          <li onClick={handleHomeClick}>
             <Link to="/">Home</Link>
           </li>
           <li>

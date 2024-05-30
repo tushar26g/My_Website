@@ -10,6 +10,7 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 1%;
+  padding-top: 5%;
   overflow: hidden;
 }
 
@@ -52,8 +53,12 @@
 }
 
 @media (max-width: 600px){
+.Basic{
+  padding-top: 17%;
+}
+
   .HomeButton{
-    width: 35%;
+    width: 36%;
   }
 
   .content{
