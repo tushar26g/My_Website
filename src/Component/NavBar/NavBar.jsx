@@ -1,87 +1,68 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import './NavBar.css';
+import logo_light from '../../Assets/Dark.png';
+import logo_dark from '../../Assets/light.png';
+import search_dark from '../../Assets/search_dark.png';
+import search_light from '../../Assets/search_light.png';
 
-const Login = ({ setShowPopup }) => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [sections, setSections] = useState([]);
+const NavBar = ({ theme, setTheme }) => {
+  const location = useLocation();
+  const history = useHistory();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('/api/login', { username, password });
-      if (response.data.success) {
-        localStorage.setItem('token', response.data.data);
-        alert('Logged in successfully!');
-        setShowPopup(false);
-      }
-    } catch (error) {
-      console.error('Login error:', error);
+  const toggle_mode = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
+
+  const handleHomeClick = () => {
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      history.push('/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  };
-
-  const handleSignup = async () => {
-    try {
-      const response = await axios.post('/api/signup', { username, password, sections });
-      if (response.data.success) {
-        setIsLogin(true);
-      }
-    } catch (error) {
-      console.error('Signup error:', error);
-    }
-  };
-
-  const handleSectionChange = (index, value) => {
-    const newSections = [...sections];
-    newSections[index] = value;
-    setSections(newSections);
-  };
-
-  const addSection = () => {
-    setSections([...sections, '']);
   };
 
   return (
-    <div className="popup">
-      <div className="popup-inner">
-        <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {!isLogin && (
-          <div>
-            <h3>Sections</h3>
-            {sections.map((section, index) => (
-              <input
-                key={index}
-                type="text"
-                placeholder={`Section ${index + 1}`}
-                value={section}
-                onChange={(e) => handleSectionChange(index, e.target.value)}
-              />
-            ))}
-            <button onClick={addSection}>Add Section</button>
-          </div>
-        )}
-        {isLogin ? (
-          <button onClick={handleLogin}>Login</button>
-        ) : (
-          <button onClick={handleSignup}>Sign Up</button>
-        )}
-        <button onClick={() => setIsLogin(!isLogin)}>
-          {isLogin ? 'Sign Up' : 'Login'}
-        </button>
-        <button onClick={() => setShowPopup(false)}>Close</button>
+    <nav className={`navbar ${theme}`}>
+      <div className='NavBar' onClick={handleHomeClick}>
+        <Link to="/" className='logo'>
+          <h1>
+            <span>P</span>aisaTo
+            <span>P</span>aisa
+          </h1>
+        </Link>
       </div>
-    </div>
+
+      <div className='Menu' onClick={() => setMenuOpen(!menuOpen)}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div className={`right-menu ${menuOpen ? 'open' : ''}`}>
+        <ul>
+          <li onClick={handleHomeClick}>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/Job">CA Hub</Link>
+          </li>
+          <li>Store</li>
+          <li>About</li>
+          <div className='search-box'>
+            <input type="text" placeholder='Search' />
+            <img src={theme === 'light' ? search_dark : search_light} alt="search" />
+          </div>
+          <img onClick={toggle_mode} src={theme === 'light' ? logo_light : logo_dark} alt="toggle" className='toggle-icon' />
+          <div>
+            <button className='Login'>Login</button>
+          </div>
+        </ul>
+      </div>
+    </nav>
   );
 };
+
+export default NavBar;

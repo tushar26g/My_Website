@@ -11,9 +11,9 @@
   background: #f4e7fb;
 }
 
-.App.dark{
+/* .App.dark{
   background: #101415;
-}
+} */
 
 .Nav {
   position: fixed;
@@ -23,3 +23,4 @@
   text-align: center;
   z-index: 1000;
 }
+

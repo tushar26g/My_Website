@@ -4,9 +4,12 @@
     margin: 0;
     font-family: Arial, sans-serif;
   } */
-  
-.dark body{
-  color: red;
+.App{
+  background: #f4e7fb;
+}
+
+.dark .App{
+  background: #222;
 }
   
   

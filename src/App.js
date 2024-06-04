@@ -23,7 +23,7 @@ const App = () => {
         <Navbar theme={theme} setTheme={setTheme} />
         <div className={`Container ${theme}`}>
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={Home} setTheme={setTheme} />
             <Route path="/readWeb/:key" component={ReadWeb} />
             <Route path="/Job" component={Job} />
             <Route path="/explore" component={Explore} />
