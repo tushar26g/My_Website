@@ -21,7 +21,6 @@ const Basic = () => {
   };
 
   return (
-    <div>
       <div className='Basic'>
         <div className='HomeButton'>
           <Link to="/Job">
@@ -89,7 +88,6 @@ const Basic = () => {
             </div>
           </div>
       </div>
-    </div>
   )
 }
 
