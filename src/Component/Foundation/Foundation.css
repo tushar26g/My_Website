@@ -1,39 +1,37 @@
-/* 
 .grid-container{
-  background: red;
-} */
-
-h1{
   padding-left: 5%;
-  padding-top: 1%;
+  padding-right: 5%;
 }
 
-h2{
-  padding-left: 5%;
+.grid-container h1{
   padding-top: 1%;
+  color: #4a4c5c;
+  text-align: center;
+  text-decoration: underline;
 }
 
-/* .section{
-  height: 80%;
-} */
+.grid-container h2{
+  padding-top: 1%;
+  color: #4a4c5c;
+}
 
 .SubSection {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   overflow: hidden;
+  border-top: 2px solid red;
+}
+
+.dark h2 {
+  color: #fda521;
+}
+
+.dark .grid-container h1{
+  color: #fda521;
 }
 
 .Sub {
-  /* display:inline-flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  transition: transform 0.2s;
-  width: 20%;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
-  margin: 20px; */
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
@@ -52,10 +50,8 @@ h2{
 }
 
 .Sub img {
-  /* width: 60%;
-  display: block; */
   width: 150px; /* Fixed width */
-  height: 150px; /* Fixed height */
+  height: 110px; /* Fixed height */
   object-fit: cover; /* Ensure the image covers the area */
   margin-right: 20px; /* Space between the image and the subName */
   border-radius: 8px 0 0 8px; 
@@ -71,24 +67,32 @@ h2{
   font-size: 1.2rem;
 }
 
-/* .Sub p {
-  margin: 5px 0 0;
-} */
 
 @media (max-width: 768px) {
   .Sub {
+    width: 38%;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100%; /* Full width on mobile */
     max-width: none; 
+    /* height:180px; */
   }
 
   .Sub img {
-    /* margin: 0 0 10px; */
-    margin: 0 0 10px;
     width: 100%; /* Full width on mobile */
-    height: auto; /* Auto height to maintain aspect ratio */
+    height: 90px; /* Auto height to maintain aspect ratio */
     border-radius: 8px 8px 0 0;
+  }
+
+  .grid-container h1{
+    font-size: 25px;
+  }
+
+  .grid-container h2{
+    font-size: 20px;
+  }
+
+  .subName h3{
+    font-size: 12px;
   }
 }
