@@ -1,6 +1,11 @@
 .grid-container{
   padding-left: 5%;
   padding-right: 5%;
+  border-top: 10px solid white;
+}
+
+.dark .grid-container{
+  border-top: 10px solid #4a4c5c;
 }
 
 .grid-container h1{

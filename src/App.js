@@ -8,6 +8,7 @@ import Navbar from './Component/NavBar/NavBar';
 import Explore from './Component/Explore/Explore';
 import Articalship from './Component/Articalship/Articalship';
 import Footer from './Component/Footer/Footer';
+import Foundation from './Component/Foundation/Foundation';
 
 const App = () => {
   const current_theme = localStorage.getItem('current_theme');
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/Job" component={Job} />
             <Route path="/explore" component={Explore} />
             <Route path="/articalship" component={Articalship} />
+            <Route path="/ca foundation" component={Foundation} />
           </Switch>
         </div>
         <Footer />

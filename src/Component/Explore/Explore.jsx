@@ -20,6 +20,13 @@ const Basic = () => {
     }
   };
 
+  const scrollToCAFoundation = () => {
+    const foundationElement = document.getElementById('ca foundation'); // Get the element by its ID
+    if (foundationElement) {
+      foundationElement.scrollIntoView({ behavior: 'smooth' }); // Scroll to the element smoothly
+    }
+  };
+
   return (
       <div className='Basic'>
         <div className='HomeButton'>
@@ -32,7 +39,7 @@ const Basic = () => {
           </Link>
         </div>
           
-          <div className='HomeButton'>
+          <div className='HomeButton' onClick={scrollToCAFoundation}>
           <div><img src={found} alt="Example" /></div>
             <div className='content'>
               <h3>CA foundation</h3>
