@@ -1,44 +1,40 @@
-import React from 'react'
-import accounting from '../../Assets/Foundation/Accounting.jpg'
-import appt from '../../Assets/Foundation/Apptie.jpg'
-import buisness from '../../Assets/Foundation/BuisnessLaw.jpg'
-import buiEco from '../../Assets/Foundation/BusinessEconomics.jpg'
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import accounting from '../../Assets/Foundation/Accounting.jpg';
+import appt from '../../Assets/Foundation/Apptie.jpg';
+import buisness from '../../Assets/Foundation/BuisnessLaw.jpg';
+import buiEco from '../../Assets/Foundation/BusinessEconomics.jpg';
+// import './StudyMaterial.css';
 
 const StudyMaterial = () => {
+  const history = useHistory();
+
+  const materials = [
+    { key: 'Accounting', title: 'Accounting', imgSrc: accounting },
+    { key: 'businessLaw', title: 'Business Law', imgSrc: buisness },
+    { key: 'quantitativeAptitude', title: 'Quantitative Aptitude', imgSrc: appt },
+    { key: 'businessEconomics', title: 'Business Economics', imgSrc: buiEco },
+  ];
+
+  const handleClick = (key) => {
+    history.push(`/readWeb/${key}`);
+  };
+
   return (
-      <div className="section">
-        <h2>Study Material</h2>
-
-        <div className='SubSection'>
-            <div className='Sub'>
-                <div><img src={accounting} alt="Example" /></div>
-                <div className='subName'>
-                  <h3>Accounting</h3>
-                </div>
+    <div className="section">
+      <h2>Study Material</h2>
+      <div className='SubSection'>
+        {materials.map((material) => (
+          <div key={material.key} className='Sub' onClick={() => handleClick(material.key)}>
+            <div><img src={material.imgSrc} alt={material.title} /></div>
+            <div className='subName'>
+              <h3>{material.title}</h3>
             </div>
-
-            <div className='Sub'>
-            <div><img src={buisness} alt="Example" /></div>
-                <div className='subName'>
-                  <h3>Business Law</h3>
-                </div>
-            </div>
-            
-            <div className='Sub'>
-            <div><img src={appt} alt="Example" /></div>
-                <div className='subName'>
-                  <h3>Quantitative Aptitude</h3>
-                </div>
-            </div>
-            <div className='Sub'>
-            <div><img src={buiEco} alt="Example" /></div>
-                <div className='subName'>
-                  <h3>Business Economics</h3>
-                </div>
-            </div>
+          </div>
+        ))}
       </div>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default StudyMaterial
+export default StudyMaterial;

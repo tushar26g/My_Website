@@ -8,8 +8,11 @@ const ReadWeb = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentSection, setCurrentSection] = useState(key);
+  const [indexData, setIndexData] = useState([]);
 
   useEffect(() => {
+    // Fetch detailed data
     fetch(`http://localhost:8080/section?key=${key}`)
       .then((response) => {
         if (!response.ok) {
@@ -20,15 +23,36 @@ const ReadWeb = () => {
       .then((data) => {
         setData(data);
         setLoading(false);
+        setCurrentSection(key);
       })
       .catch((error) => {
         setError(error);
         setLoading(false);
       });
+
+    // Fetch index data
+    fetch(`http://localhost:8080/index`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((indexData) => {
+        setIndexData(indexData);
+      })
+      .catch((error) => {
+        console.error('Error fetching index:', error);
+      });
   }, [key]);
 
   const navigateToSection = (sectionKey) => {
     history.push(`/readWeb/${sectionKey}`);
+  };
+
+  const handleIndexClick = (sectionKey) => {
+    navigateToSection(sectionKey);
+    setCurrentSection(sectionKey);
   };
 
   if (loading) {
@@ -39,24 +63,42 @@ const ReadWeb = () => {
     return <p>Error loading data: {error.message}</p>;
   }
 
+  if (!data || !data.body || !data.body.content) {
+    return <p>No content available</p>; // or handle this case appropriately
+  }
+  
   return (
-    <div className="readWeb">
-      <h1>{data.heading}</h1>
-      {data.body.content.map((item, index) => {
-        switch (item.type) {
-          case 'text':
-            return <TextSection key={index} content={item.content} />;
-          case 'table':
-            return <TableSection key={index} title={item.title} content={item.content} />;
-          case 'image':
-            return <ImageSection key={index} content={item.content} />;
-          default:
-            return null;
-        }
-      })}
-      <div className="navigation-buttons">
-        {data.previous && <button onClick={() => navigateToSection(data.previous)}>Previous</button>}
-        {data.next && <button onClick={() => navigateToSection(data.next)}>Next</button>}
+    <div className="readWebContainer">
+      <div className="index">
+        <h3>Index</h3>
+        {indexData.map((section) => (
+          <div
+            key={section.key}
+            className={`index-item ${currentSection === section.key ? 'active' : ''}`}
+            onClick={() => handleIndexClick(section.key)}
+          >
+            {section.title}
+          </div>
+        ))}
+      </div>
+      <div className="readWeb">
+        <h1>{data.heading}</h1>
+        {data.body.content.map((item, index) => {
+          switch (item.type) {
+            case 'text':
+              return <TextSection key={index} content={item.content} />;
+            case 'table':
+              return <TableSection key={index} title={item.title} content={item.content} />;
+            case 'image':
+              return <ImageSection key={index} content={item.content} />;
+            default:
+              return null;
+          }
+        })}
+        <div className="navigation-buttons">
+          {data.previous && <button onClick={() => navigateToSection(data.previous)}>Previous</button>}
+          {data.next && <button onClick={() => navigateToSection(data.next)}>Next</button>}
+        </div>
       </div>
     </div>
   );
@@ -82,8 +124,8 @@ const TableSection = ({ title, content }) => {
         <tbody>
           {content.map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {headers.map((header) => (
-                <td key={header}>{row[header]}</td>
+              {headers.map((header, columnIndex) => (
+                <td key={columnIndex}>{row[header]}</td>
               ))}
             </tr>
           ))}
