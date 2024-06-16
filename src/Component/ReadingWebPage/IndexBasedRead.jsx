@@ -60,13 +60,13 @@ const IndexBasedRead = () => {
   const renderIndex = () => {
     return indexData.map(module => (
       <div key={module.moduleTitle}>
-        <h4>{module.moduleTitle}</h4>
+        <h3>{module.moduleTitle}</h3>
         {module.chapters.map(chapter => (
           <div key={chapter.chapterTitle} className="chapter">
-            <h5>{chapter.chapterTitle}</h5>
+            <h4>{chapter.chapterTitle}</h4>
             {chapter.units.map(unit => (
               <div key={unit.unitTitle} className="unit">
-                <h6>{unit.unitTitle}</h6>
+                <h5>{unit.unitTitle}</h5>
                 <ul>
                   {unit.topics.map(topic => (
                     <li
@@ -74,7 +74,7 @@ const IndexBasedRead = () => {
                       className={`topic ${currentSection === topic ? 'active' : ''}`}
                       onClick={() => navigateToSection(topic)}
                     >
-                      {topic}
+                      <h6>{topic}</h6>
                     </li>
                   ))}
                 </ul>
@@ -123,7 +123,6 @@ const IndexBasedRead = () => {
   return (
     <div className="readWebContainer">
       <div className="index">
-        <h3>Index</h3>
         {renderIndex()}
       </div>
       {renderContent()}
