@@ -17,7 +17,7 @@ const StudyMaterial = () => {
   ];
 
   const handleClick = (key) => {
-    history.push(`/readWeb/${key}`);
+    history.push(`/indexBasedRead/${key}`);
   };
 
   return (

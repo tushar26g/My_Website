@@ -1,0 +1,130 @@
+/* General Styles */
+.readWebContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .index {
+    width: 25%;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+  
+  .readWeb {
+    width: 75%;
+    padding: 20px;
+  }
+  
+  .index h3, .index h4, .index h5, .index h6 {
+    margin: 0 0 10px;
+  }
+  
+  .index ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .index .topic {
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .index .topic:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .index .topic.active {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .text-section {
+    margin-bottom: 20px;
+  }
+  
+  .table-section {
+    margin-bottom: 20px;
+  }
+  
+  .table-section h2 {
+    margin-bottom: 10px;
+  }
+  
+  .table-section table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-section th, .table-section td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .navigation-buttons {
+    margin-top: 20px;
+  }
+  
+  .navigation-buttons button {
+    margin-right: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .navigation-buttons button:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .readWebContainer {
+      flex-direction: column;
+    }
+  
+    .index {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #ccc;
+    }
+  
+    .readWeb {
+      width: 100%;
+    }
+  
+    .index ul {
+      flex-direction: column;
+    }
+  
+    .index .topic {
+      width: 100%;
+    }
+  
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .index {
+      padding: 10px;
+    }
+  
+    .readWeb {
+      padding: 10px;
+    }
+  
+    .navigation-buttons button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

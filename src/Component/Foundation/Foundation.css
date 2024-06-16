@@ -55,10 +55,10 @@
 }
 
 .Sub img {
-  width: 150px; /* Fixed width */
+  width: 135px; /* Fixed width */
   height: 110px; /* Fixed height */
   object-fit: cover; /* Ensure the image covers the area */
-  margin-right: 20px; /* Space between the image and the subName */
+  margin-right: 10px; /* Space between the image and the subName */
   border-radius: 8px 0 0 8px; 
 }
 

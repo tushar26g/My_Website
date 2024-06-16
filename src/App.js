@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Job from './Component/JobWebsite/Job';
 import ReadWeb from './Component/ReadingWebPage/readPage';
+import IndexBasedRead from './Component/ReadingWebPage/IndexBasedRead'
 import Home from './Component/Home/Home';
 import Navbar from './Component/NavBar/NavBar';
 import Explore from './Component/Explore/Explore';
@@ -26,6 +27,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} setTheme={setTheme} />
             <Route path="/readWeb/:key" component={ReadWeb} />
+            <Route path="/indexBasedRead/:key" component={IndexBasedRead} />
             <Route path="/Job" component={Job} />
             <Route path="/explore" component={Explore} />
             <Route path="/articalship" component={Articalship} />
