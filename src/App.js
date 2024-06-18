@@ -10,7 +10,7 @@ import Explore from './Component/Explore/Explore';
 import Articalship from './Component/Articalship/Articalship';
 import Footer from './Component/Footer/Footer';
 import Foundation from './Component/Foundation/Foundation';
-
+import MCQ from './Component/ReadingWebPage/MCQComponent'
 const App = () => {
   const current_theme = localStorage.getItem('current_theme');
   const [theme, setTheme] = useState(current_theme ? current_theme : 'light');
@@ -32,6 +32,7 @@ const App = () => {
             <Route path="/explore" component={Explore} />
             <Route path="/articalship" component={Articalship} />
             <Route path="/ca foundation" component={Foundation} />
+            <Route path="/mcqs/:key" component={MCQ} />
           </Switch>
         </div>
         <Footer />
