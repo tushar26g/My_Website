@@ -1,8 +1,81 @@
-.first{
+.first {
+    width: 80%;
+    margin: 0 auto;
     margin-top: 4%;
     padding-top: 2%;
+    font-family: Arial, sans-serif;
 }
 
-/* li{
-    border: 2px solid black;
-} */
+.question-block {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+.question-block ul {
+    list-style-type: none;
+    padding: 0;
+    display: block;
+    flex-direction: column;
+}
+
+li {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column; /* Ensure options are displayed in a column */
+}
+
+li label {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    /* background-color: #f1f1f1;  */
+    cursor: pointer;
+}
+
+li.correct {
+    background-color: green;
+    color: white;
+}
+
+li.incorrect {
+    background-color: red;
+    color: white;
+}
+
+.feedback {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #e9e9e9;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}

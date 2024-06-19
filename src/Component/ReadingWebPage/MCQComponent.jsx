@@ -3,9 +3,9 @@ import './MCQCompnent.css';
 
 const MCQComponent = () => {
     const [mcq, setMcq] = useState(null);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [showFeedback, setShowFeedback] = useState(false);
+    const [selectedOptions, setSelectedOptions] = useState({});
+    const [showFeedback, setShowFeedback] = useState({});
+    const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
 
     useEffect(() => {
         fetch('http://localhost:8080/mcqs/Accounting%20Chapter%201%20MCQ')
@@ -19,53 +19,79 @@ const MCQComponent = () => {
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
             });
-    }, []);
+    }, [currentTopicIndex]);
 
     if (!mcq) return <div>Loading...</div>;
 
-    const handleOptionClick = (option) => {
-        setSelectedOption(option);
-        setShowFeedback(true);
+    const handleOptionClick = (questionIndex, option) => {
+        setSelectedOptions({
+            ...selectedOptions,
+            [questionIndex]: option,
+        });
+        setShowFeedback({
+            ...showFeedback,
+            [questionIndex]: true,
+        });
     };
 
-    const handleNextClick = () => {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSelectedOption(null);
-        setShowFeedback(false);
+    const handleNextTopicClick = () => {
+        setCurrentTopicIndex(currentTopicIndex + 1);
+        setSelectedOptions({});
+        setShowFeedback({});
     };
 
-    const currentQuestion = mcq.questions[currentQuestionIndex];
+    const handlePrevTopicClick = () => {
+        setCurrentTopicIndex(currentTopicIndex - 1);
+        setSelectedOptions({});
+        setShowFeedback({});
+    };
 
     return (
         <div className='first'>
-            <h2>{currentQuestion.question}</h2>
-            <ul>
-                {currentQuestion.options.map(option => (
-                    <li
-                        key={option}
-                        onClick={() => handleOptionClick(option)}
-                        style={{
-                            color:
-                                showFeedback && option === currentQuestion.correctAnswer
-                                    ? 'green'
-                                    : showFeedback && option === selectedOption
-                                    ? 'red'
-                                    : 'black'
-                        }}
-                    >
-                        {option}
-                    </li>
-                ))}
-            </ul>
-            {showFeedback && (
-                <div>
-                    <p>{`The correct answer is: ${currentQuestion.correctAnswer}`}</p>
-                    {currentQuestion.reason && <p>{currentQuestion.reason}</p>}
+            {mcq.questions.map((question, index) => (
+                <div key={index} className='question-block'>
+                    <h3>{question.question}</h3>
+                    <ul>
+                        {question.options.map(option => (
+                            <li
+                                key={option}
+                                className={
+                                    showFeedback[index]
+                                        ? option === question.correctAnswer
+                                            ? 'correct'
+                                            : option === selectedOptions[index]
+                                            ? 'incorrect'
+                                            : ''
+                                        : ''
+                                }
+                            >
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name={`question-${index}`}
+                                        value={option}
+                                        checked={selectedOptions[index] === option}
+                                        onChange={() => handleOptionClick(index, option)}
+                                    />
+                                    {option}
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                    {showFeedback[index] && (
+                        <div className='feedback'>
+                            <p>{`Correct ans: ${question.correctAnswer}`}</p>
+                            {question.reason && <p>{question.reason}</p>}
+                        </div>
+                    )}
                 </div>
-            )}
-            {currentQuestionIndex < mcq.questions.length - 1 && (
-                <button onClick={handleNextClick}>Next</button>
-            )}
+            ))}
+            <div className='navigation-buttons'>
+                {currentTopicIndex > 0 && (
+                    <button onClick={handlePrevTopicClick}>Previous Topic</button>
+                )}
+                <button onClick={handleNextTopicClick}>Next Topic</button>
+            </div>
         </div>
     );
 };
