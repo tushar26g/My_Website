@@ -1,10 +1,51 @@
-.first {
-    width: 80%;
+.mcq-container {
+    /* width: 80%; */
     margin: 0 auto;
+    display: flex;
     margin-top: 4%;
     padding-top: 2%;
     font-family: Arial, sans-serif;
+    flex-direction: row;
+  justify-content: space-between;
 }
+
+.index-sidebar {
+    width: 20%; /* Adjust width as needed */
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  .index-sidebar h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+  
+  .index-sidebar h3 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+  }
+  
+  .index-sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: block;
+    flex-direction: column;
+  }
+  
+  .index-sidebar li {
+    margin-bottom: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #333;
+    display: block;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .mcq-content {
+    width: 80%; /* Adjust width for main content */
+    padding: 20px;
+  }
 
 .question-block {
     margin-bottom: 20px;
@@ -14,7 +55,6 @@
     background-color: #f9f9f9;
 }
 
-
 .question-block ul {
     list-style-type: none;
     padding: 0;
@@ -22,29 +62,38 @@
     flex-direction: column;
 }
 
-li {
+.question-block li {
     margin-bottom: 8px;
     display: flex;
     flex-direction: column; /* Ensure options are displayed in a column */
 }
 
-li label {
+.question-block li label {
     display: flex;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
     width: 100%;
-    /* background-color: #f1f1f1;  */
     cursor: pointer;
 }
 
-li.correct {
-    background-color: green;
+/* Apply different background colors to even and odd options */
+.question-block li:nth-child(even) label {
+    background-color: #ffffff; /* White background for even options */
+}
+
+.question-block li:nth-child(odd) label {
+    background-color: #c0c0c0; /* Silver background for odd options */
+}
+
+/* Override colors for correct and incorrect answers */
+.question-block li.correct label {
+    background-color: green !important;
     color: white;
 }
 
-li.incorrect {
-    background-color: red;
+.question-block li.incorrect label {
+    background-color: red !important;
     color: white;
 }
 
@@ -79,3 +128,21 @@ button:hover {
 input[type="radio"] {
     margin-right: 10px;
 }
+
+@media (max-width: 768px) {
+    .mcq-container {
+      flex-direction: column;
+      align-items: center; /* Center align on mobile */
+    }
+  
+    .index-sidebar {
+      width: 100%; /* Full width on mobile */
+      max-width: 100%; /* Ensure it takes full available width */
+      margin-bottom: 20px; /* Space between index and main content on mobile */
+    }
+  
+    .mcq-content {
+      width: 100%; /* Full width on mobile */
+      max-width: 100%; /* Ensure it takes full available width */
+    }
+  }
