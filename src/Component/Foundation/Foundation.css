@@ -1,6 +1,7 @@
 .grid-container{
   padding-left: 5%;
   padding-right: 5%;
+  padding-top: 5%;
   border-top: 10px solid white;
 }
 
@@ -74,6 +75,9 @@
 
 
 @media (max-width: 768px) {
+  .grid-container{
+    padding-top: 12%;
+  }
   .Sub {
     width: 38%;
     flex-direction: column;
