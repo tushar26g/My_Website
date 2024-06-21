@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './MCQCompnent.css';
+import './MCQComponent.css';
+import Topic from '../../Assets/Icon/topic.jpg'
+import Chapter from '../../Assets/Icon/chapter.png'
+import Module from '../../Assets/Icon/module.jpg'
 
 const MCQComponent = () => {
     const [mcq, setMcq] = useState(null);
@@ -32,7 +35,7 @@ const MCQComponent = () => {
                 }
                 return response.json();
             })
-            .then(indexData => setIndex(indexData))
+            .then(index => setIndex(index))
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
             });
@@ -74,16 +77,24 @@ const MCQComponent = () => {
     return (
         <div className='mcq-container'>
             <div className='index-sidebar'>
-                {/* Render index data */}
                 {Array.isArray(index) && index.map((module, modIndex) => (
                     <div key={modIndex}>
-                        <h2>{module.moduleTitle}</h2>
+                        <h2>
+                            <img src={Module} alt='Module Logo' className='logo' />
+                            {module.moduleTitle}
+                        </h2>
                         {Array.isArray(module.mcqchapters) && module.mcqchapters.map((chapter, chapIndex) => (
                             <div key={chapIndex}>
-                                <h3>{chapter.mcqchapterTitle}</h3>
+                                <h3>
+                                    <img src={Chapter} alt='Chapter Logo' className='logo' />
+                                    {chapter.mcqchapterTitle}
+                                </h3>
                                 <ul>
                                     {Array.isArray(chapter.mcqunits) && chapter.mcqunits.map((unit, unitIndex) => (
-                                        <li key={unitIndex}>{unit.mcqunitTitle}</li>
+                                        <li key={unitIndex}>
+                                            <img src={Topic} alt='Unit Logo' className='logo' />
+                                            {unit.mcqunitTitle}
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
@@ -92,7 +103,6 @@ const MCQComponent = () => {
                 ))}
             </div>
             <div className='mcq-content'>
-                {/* Render MCQ questions */}
                 {mcq.questions.map((question, index) => (
                     <div key={index} className='question-block'>
                         <h3>{question.question}</h3>
@@ -112,7 +122,7 @@ const MCQComponent = () => {
                                 >
                                     <label>
                                         <input
-                                            type='radio'
+                                            type="radio"
                                             name={`question-${index}`}
                                             value={option}
                                             checked={selectedOptions[index] === option}
@@ -125,7 +135,7 @@ const MCQComponent = () => {
                         </ul>
                         {showFeedback[index] && (
                             <div className='feedback'>
-                                <p>{`Correct answer: ${question.correctAnswer}`}</p>
+                                <p>{`Correct ans: ${question.correctAnswer}`}</p>
                                 {question.reason && <p>{question.reason}</p>}
                             </div>
                         )}

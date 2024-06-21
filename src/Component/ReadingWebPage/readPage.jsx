@@ -10,6 +10,7 @@ const ReadWeb = () => {
   const [error, setError] = useState(null);
   const [currentSection, setCurrentSection] = useState(key);
   const [indexData, setIndexData] = useState([]);
+  const [showIndex, setShowIndex] = useState(false);
 
   useEffect(() => {
     // Fetch detailed data
@@ -48,11 +49,16 @@ const ReadWeb = () => {
 
   const navigateToSection = (sectionKey) => {
     history.push(`/readWeb/${sectionKey}`);
+    setShowIndex(false); // Hide index on section navigation
   };
 
   const handleIndexClick = (sectionKey) => {
     navigateToSection(sectionKey);
     setCurrentSection(sectionKey);
+  };
+
+  const toggleIndex = () => {
+    setShowIndex(!showIndex); // Toggle index visibility
   };
 
   if (loading) {
@@ -66,38 +72,45 @@ const ReadWeb = () => {
   if (!data || !data.body || !data.body.content) {
     return <p>No content available</p>; // or handle this case appropriately
   }
-  
+
   return (
-    <div className="readWebContainer">
-      <div className="index">
-        <h3>Index</h3>
-        {indexData.map((section) => (
-          <div
-            key={section.key}
-            className={`index-item ${currentSection === section.key ? 'active' : ''}`}
-            onClick={() => handleIndexClick(section.key)}
-          >
-            {section.title}
-          </div>
-        ))}
+    <div>
+      <div className="header">
+        <div className="hamburger-menu" onClick={toggleIndex}>
+          &#9776; {/* Hamburger menu icon */}
+        </div>
       </div>
-      <div className="readWeb">
-        <h1>{data.heading}</h1>
-        {data.body.content.map((item, index) => {
-          switch (item.type) {
-            case 'text':
-              return <TextSection key={index} content={item.content} />;
-            case 'table':
-              return <TableSection key={index} title={item.title} content={item.content} />;
-            case 'image':
-              return <ImageSection key={index} content={item.content} />;
-            default:
-              return null;
-          }
-        })}
-        <div className="navigation-buttons">
-          {data.previous && <button onClick={() => navigateToSection(data.previous)}>Previous</button>}
-          {data.next && <button onClick={() => navigateToSection(data.next)}>Next</button>}
+      <div className="readWebContainer">
+        <div className={`index ${showIndex ? 'show' : ''}`}>
+          <h3 onClick={toggleIndex}>Index</h3>
+          {indexData.map((section) => (
+            <div
+              key={section.key}
+              className={`index-item ${currentSection === section.key ? 'active' : ''}`}
+              onClick={() => handleIndexClick(section.key)}
+            >
+              {section.title}
+            </div>
+          ))}
+        </div>
+        <div className="readWeb">
+          <h1>{data.heading}</h1>
+          {data.body.content.map((item, index) => {
+            switch (item.type) {
+              case 'text':
+                return <TextSection key={index} content={item.content} />;
+              case 'table':
+                return <TableSection key={index} title={item.title} content={item.content} />;
+              case 'image':
+                return <ImageSection key={index} content={item.content} />;
+              default:
+                return null;
+            }
+          })}
+          <div className="navigation-buttons">
+            {data.previous && <button onClick={() => navigateToSection(data.previous)}>Previous</button>}
+            {data.next && <button onClick={() => navigateToSection(data.next)}>Next</button>}
+          </div>
         </div>
       </div>
     </div>
@@ -123,7 +136,7 @@ const TableSection = ({ title, content }) => {
         </thead>
         <tbody>
           {content.map((row, rowIndex) => (
-            <tr key={rowIndex}>
+            <tr key={rowIndex} className="hamburger-row"> {/* Apply the hamburger-row class */}
               {headers.map((header, columnIndex) => (
                 <td key={columnIndex}>{row[header]}</td>
               ))}
