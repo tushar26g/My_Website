@@ -1,7 +1,12 @@
 /* General styles */
 .readWebContainer {
-  margin-top: 4%;
+  margin-top: 3%;
   display: flex;
+}
+
+.dark .readWebContainer{
+  background: #222;
+  color: white;
 }
 
 .index {
@@ -9,6 +14,10 @@
   padding: 20px;
   background-color: #f0f0f0;
   z-index: 10; /* Ensure index is above content */
+}
+
+.dark .index{
+  background: #383B38;
 }
 
 .readWeb {
@@ -40,9 +49,14 @@
   background-color: #c0c0c0;
 }
 
-.readWeb h1 {
+.dark .readWeb h1 {
   font-size: 2rem;
   margin-bottom: 20px;
+  color: #fda521;
+}
+
+.dark .readWeb h2{
+  color: #25d366;
 }
 
 .navigation-buttons {
@@ -75,17 +89,19 @@
 .table-section table {
   width: 100%;
   border-collapse: collapse;
+  border: 2px solid;
 }
 
 .table-section th,
 .table-section td {
   border: 1px solid #ccc;
   padding: 8px;
+  width: 50%;
 }
 
 /* New styles for table header and rows */
 .table-section th {
-  background-color: black;
+  background-color: #4a4c5c;
   color: white;
 }
 
@@ -94,7 +110,7 @@
 }
 
 .table-section tr:nth-child(odd) {
-  background-color: silver;
+  background-color: #FAF6F1;
 }
 
 .image-section {
@@ -144,10 +160,20 @@
   .hamburger-menu {
     display: block;
     padding-top: 12%;
+    font-size: 30px;
+  }
+
+  .dark .header{
+    background: #4a4c5c;
+  }
+
+  .dark .index{
+    background: #383B38;
   }
 
   .readWebContainer {
     flex-direction: column;
     /* padding-top: 20%;  */
+    margin-top: 1%;
   }
 }

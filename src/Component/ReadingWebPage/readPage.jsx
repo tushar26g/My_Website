@@ -77,7 +77,7 @@ const ReadWeb = () => {
     <div>
       <div className="header">
         <div className="hamburger-menu" onClick={toggleIndex}>
-          &#9776; {/* Hamburger menu icon */}
+          &#9776; 
         </div>
       </div>
       <div className="readWebContainer">

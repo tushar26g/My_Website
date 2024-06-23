@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './MCQComponent.css';
-import Topic from '../../Assets/Icon/topic.jpg'
-import Chapter from '../../Assets/Icon/chapter.png'
-import Module from '../../Assets/Icon/module.jpg'
+import Topic from '../../Assets/Icon/topic.png'
+import Module from '../../Assets/Icon/chapter.png'
+import Chapter from '../../Assets/Icon/module.png'
 
 const MCQComponent = () => {
     const [mcq, setMcq] = useState(null);

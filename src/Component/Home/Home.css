@@ -12,4 +12,13 @@
   background: #222;
 }
   
+.dark .table-section tr:nth-child(even) {
+  background-color: white;
+  color: black;
+}
+
+.dark .table-section tr:nth-child(odd) {
+  background-color: #FAF6F1;
+  color: black;
+}
   
