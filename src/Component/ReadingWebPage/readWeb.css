@@ -63,20 +63,18 @@
   margin-top: 20px;
 }
 
-.navigation-buttons button {
+/* .navigation-buttons button {
   margin-right: 10px;
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
   border: none;
-  background-color: #007bff;
+  background-color: #25d366;
   color: white;
   border-radius: 5px;
-}
+} */
 
-.navigation-buttons button:hover {
-  background-color: #0056b3;
-}
+
 
 .text-section {
   margin-bottom: 20px;
@@ -150,6 +148,8 @@
   background-color: #f0f0f0;
   padding-top: 50px; /* Adjust padding to account for the menu */
 }
+
+
 
 /* Responsive design for mobile view */
 @media (max-width: 768px) {

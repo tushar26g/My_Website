@@ -28,9 +28,7 @@ const NavBar = ({ theme, setTheme }) => {
     <nav className={`navbar ${theme}`}>
       <div className='NavBar' onClick={handleHomeClick}>
         <Link to="/" className='logo'>
-          <h1>
-            <span>P</span>aisaTo
-            <span>P</span>aisa
+          <h1>PaisaToPaisa
           </h1>
         </Link>
       </div>
