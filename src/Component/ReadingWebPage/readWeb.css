@@ -1,10 +1,9 @@
 /* General styles */
 .readWebContainer {
-  margin-top: 3%;
   display: flex;
 }
 
-.dark .readWebContainer{
+.dark .readWebContainer {
   background: #222;
   color: white;
 }
@@ -16,8 +15,8 @@
   z-index: 10; /* Ensure index is above content */
 }
 
-.dark .index{
-  background: #383B38;
+.dark .index {
+  background: black;
 }
 
 .readWeb {
@@ -55,26 +54,13 @@
   color: #fda521;
 }
 
-.dark .readWeb h2{
+.dark .readWeb h2 {
   color: #25d366;
 }
 
 .navigation-buttons {
   margin-top: 20px;
 }
-
-/* .navigation-buttons button {
-  margin-right: 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  background-color: #25d366;
-  color: white;
-  border-radius: 5px;
-} */
-
-
 
 .text-section {
   margin-bottom: 20px;
@@ -111,6 +97,8 @@
   background-color: #FAF6F1;
 }
 
+/* Dark mode is in MCQComponent */
+
 .image-section {
   margin-bottom: 20px;
 }
@@ -124,7 +112,7 @@
 .header {
   width: 100%;
   background-color: #fda521; /* Different background color */
-  padding: 10px 0;
+  /* padding: 10px 0; */
   position: relative; /* Keep header in the document flow */
   z-index: 20; /* Ensure header is above index */
 }
@@ -149,31 +137,30 @@
   padding-top: 50px; /* Adjust padding to account for the menu */
 }
 
-
-
 /* Responsive design for mobile view */
 @media (max-width: 768px) {
   .index {
     display: none; /* Hide the index by default */
   }
-
   .hamburger-menu {
     display: block;
     padding-top: 12%;
     font-size: 30px;
   }
 
-  .dark .header{
+  .header{
+    padding: 10px;
+  }
+  .dark .header {
     background: #4a4c5c;
   }
 
-  .dark .index{
+  .dark .index {
     background: #383B38;
   }
 
   .readWebContainer {
     flex-direction: column;
-    /* padding-top: 20%;  */
     margin-top: 1%;
   }
 }

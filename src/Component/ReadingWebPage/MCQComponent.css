@@ -1,11 +1,18 @@
+/* General Styles */
 .mcq-container {
   margin: 0 auto;
   display: flex;
-  margin-top: 4%;
+  margin-top: 3%;
   padding-top: 2%;
   font-family: Arial, sans-serif;
   flex-direction: row;
   justify-content: space-between;
+}
+
+/* Dark Mode Styles */
+.dark .mcq-container {
+  background: #222;
+  color: white;
 }
 
 .index-sidebar {
@@ -14,10 +21,25 @@
   background-color: #f0f0f0;
 }
 
+.dark .index-sidebar {
+  background: black;
+  color: white;
+  /* border-right: 1px solid #383B38; */
+}
+
 .index-sidebar .logo {
   margin-right: 10px;
   width: 24px;
   height: 24px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Apply Color Overlay to Images in Dark Mode */
+.dark .index-sidebar .logo {
+  background-color: #383B38;
+  filter: invert(1);
 }
 
 .index-sidebar h2 {
@@ -51,10 +73,22 @@
   text-align: left;
 }
 
+.dark .index-sidebar li {
+  color: #c0c0c0;
+}
+
 .index-sidebar li .logo {
   margin-right: 10px;
   width: 20px;
   height: 20px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dark .index-sidebar li .logo {
+  background-color: #383B38;
+  filter: invert(1);
 }
 
 .mcq-content {
@@ -68,6 +102,12 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+}
+
+.dark .question-block {
+  background-color: #222;
+  color: white;
+  border-color: 1px solid #383B38;
 }
 
 .question-block ul {
@@ -96,12 +136,20 @@
   background-color: #ffffff;
 }
 
+.dark .question-block li:nth-child(even) label {
+  background-color: #717070;
+}
+
 .question-block li:nth-child(odd) label {
   background-color: #c0c0c0;
 }
 
+.dark .question-block li:nth-child(odd) label {
+  background-color: #555;
+}
+
 .question-block li.correct label {
-  background-color: green !important;
+  background-color: #25d366 !important;
   color: white;
 }
 
@@ -118,25 +166,10 @@
   background-color: #e9e9e9;
 }
 
-/* .navigation-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-} */
-
-/* button {
-  padding: 10px 15px;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-} */
-
-/* button:hover {
-  background-color: #0056b3;
-} */
+.dark .feedback {
+  background-color: #555;
+  border-color: #666;
+}
 
 input[type="radio"] {
   margin-right: 10px;
@@ -158,4 +191,15 @@ input[type="radio"] {
     width: 100%;
     max-width: 100%;
   }
+}
+
+
+.dark .table-section tr:nth-child(even) {
+  background-color: #383B38;
+  color: white;
+}
+
+.dark .table-section tr:nth-child(odd) {
+  background-color: #555;
+  color: white;
 }
