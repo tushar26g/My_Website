@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import './IndexBasedRead.css';
+import Topic from '../../Assets/Icon/topic.png';
+import Module from '../../Assets/Icon/chapter.png';
+import Chapter from '../../Assets/Icon/module.png';
 
 const IndexBasedRead = () => {
   const { key } = useParams();
@@ -9,7 +12,7 @@ const IndexBasedRead = () => {
   const [indexData, setIndexData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentSection, setCurrentSection] = useState(null); // Track current section
+  const [currentSection, setCurrentSection] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +52,6 @@ const IndexBasedRead = () => {
   }, [key]);
 
   useEffect(() => {
-    // Set current section based on URL parameter
     setCurrentSection(key);
   }, [key]);
 
@@ -60,13 +62,22 @@ const IndexBasedRead = () => {
   const renderIndex = () => {
     return indexData.map(module => (
       <div key={module.moduleTitle}>
-        <h3>{module.moduleTitle}</h3>
+        <h3>
+          <img src={Module} alt='Module Logo' className='logo' />
+          {module.moduleTitle}
+        </h3>
         {module.chapters.map(chapter => (
           <div key={chapter.chapterTitle} className="chapter">
-            <h4>{chapter.chapterTitle}</h4>
+            <h4>
+              <img src={Chapter} alt='Chapter Logo' className='logo' />
+              {chapter.chapterTitle}
+            </h4>
             {chapter.units.map(unit => (
               <div key={unit.unitTitle} className="unit">
-                <h5>{unit.unitTitle}</h5>
+                <h5>
+                  <img src={Topic} alt='Unit Logo' className='logo' />
+                  {unit.unitTitle}
+                </h5>
                 <ul>
                   {unit.topics.map(topic => (
                     <li

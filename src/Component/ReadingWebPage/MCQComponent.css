@@ -105,7 +105,7 @@
 }
 
 .dark .question-block {
-  background-color: #222;
+  background-color: black;
   color: white;
   border-color: 1px solid #383B38;
 }
@@ -134,10 +134,12 @@
 
 .question-block li:nth-child(even) label {
   background-color: #ffffff;
+  border: 1px solid;
 }
 
 .dark .question-block li:nth-child(even) label {
-  background-color: #717070;
+  background-color: black;
+  border: 1px solid;
 }
 
 .question-block li:nth-child(odd) label {
