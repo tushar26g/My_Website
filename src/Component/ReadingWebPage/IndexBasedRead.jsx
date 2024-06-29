@@ -132,11 +132,13 @@ const IndexBasedRead = () => {
   }
 
   return (
-    <div className="readWebContainer">
-      <div className="index">
+    <div className="readWeb-Container">
+      <div className="indexRead">
         {renderIndex()}
       </div>
-      {renderContent()}
+      <div className='data-container'>
+        {renderContent()}
+      </div>
     </div>
   );
 };

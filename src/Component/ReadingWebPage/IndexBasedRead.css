@@ -1,24 +1,31 @@
 /* General Styles */
-.readWebContainer {
-  margin-top: 4%;
+.readWeb-Container {
+  margin: 0 auto;
   display: flex;
+  margin-top: 3%;
+  padding-top: 2%;
+  font-family: Arial, sans-serif;
   flex-direction: row;
+  justify-content: space-between;
 }
 
-.index {
+.dark .readWeb-Container{
+  background: #222;
+  color: white;
+}
+
+.indexRead {
   width: 20%;
   padding: 20px;
-  overflow-y: auto;
-  max-height: 100vh;
   background-color: #f0f0f0;
 }
 
-.dark .index {
+.dark .indexRead {
   background: black;
   color: white;
 }
 
-.index .logo {
+.indexRead .logo {
   margin-right: 10px;
   width: 24px;
   height: 24px;
@@ -27,25 +34,25 @@
   background-repeat: no-repeat;
 }
 
-.dark .index .logo {
+.dark .indexRead .logo {
   background-color: #383B38;
   filter: invert(1);
 }
 
-.index h3, .index h4, .index h5, .index h6 {
+.indexRead h3, .indexRead h4, .indexRead h5, .indexRead h6 {
   margin: 0 0 10px;
   display: flex;
   align-items: center;
 }
 
-.index ul {
+.indexRead ul {
   list-style-type: none;
   padding-left: 0;
   display: block;
   flex-direction: column;
 }
 
-.index li {
+.indexRead li {
   margin-bottom: 5px;
   font-size: 1rem;
   cursor: pointer;
@@ -55,11 +62,11 @@
   text-align: left;
 }
 
-.dark .index li {
+.dark .indexRead li {
   color: #c0c0c0;
 }
 
-.index .topic {
+.indexRead .topic {
   cursor: pointer;
   padding: 5px 10px;
   margin-bottom: 10px;
@@ -68,16 +75,16 @@
   text-align: left;
 }
 
-.index .topic:hover {
+.indexRead .topic:hover {
   background-color: #e0e0e0;
 }
 
-.index .topic.active {
+.indexRead .topic.active {
   font-weight: bold;
   background-color: #c0c0c0;
 }
 
-.readWeb {
+.data-container {
   width: 80%;
   padding: 20px;
 }
@@ -105,31 +112,31 @@
 }
 
 @media (max-width: 768px) {
-  .readWebContainer {
+  .readWeb-Container  {
     flex-direction: column;
   }
 
-  .index {
+  .indexRead {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #ccc;
   }
 
-  .readWeb {
+  .data-container {
     width: 100%;
   }
 
-  .index ul {
+  .indexRead ul {
     flex-direction: column;
   }
 
-  .index .topic {
+  .indexRead .topic {
     width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .index {
+  .indexRead {
     padding: 10px;
   }
 
