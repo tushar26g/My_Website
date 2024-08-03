@@ -1,6 +1,7 @@
 /* General styles */
 .readWebContainer {
   display: flex;
+  
 }
 
 .dark .readWebContainer {

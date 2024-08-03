@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import './IndexBasedRead.css';
 import Topic from '../../Assets/Icon/topic.png';
-import Module from '../../Assets/Icon/chapter.png';
-import Chapter from '../../Assets/Icon/module.png';
+import Module from '../../Assets/Icon/module.png';
+import Chapter from '../../Assets/Icon/chapter.png';
 
 const IndexBasedRead = () => {
   const { key } = useParams();
@@ -13,6 +13,7 @@ const IndexBasedRead = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentSection, setCurrentSection] = useState(null);
+  const [isIndexVisible, setIsIndexVisible] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,6 +58,7 @@ const IndexBasedRead = () => {
 
   const navigateToSection = sectionKey => {
     history.push(`/indexBasedRead/${sectionKey}`);
+    setIsIndexVisible(false); // Hide index on section navigation
   };
 
   const renderIndex = () => {
@@ -81,11 +83,11 @@ const IndexBasedRead = () => {
                 <ul>
                   {unit.topics.map(topic => (
                     <li
-                      key={topic}
-                      className={`topic ${currentSection === topic ? 'active' : ''}`}
-                      onClick={() => navigateToSection(topic)}
+                      key={topic.key}
+                      className={`topic ${currentSection === topic.key ? 'active' : ''}`}
+                      onClick={() => navigateToSection(topic.key)}
                     >
-                      <h6>{topic}</h6>
+                      <h6>{topic.title}</h6>
                     </li>
                   ))}
                 </ul>
@@ -133,7 +135,12 @@ const IndexBasedRead = () => {
 
   return (
     <div className="readWeb-Container">
-      <div className="indexRead">
+      <div className="header2">
+        <div className="hamburger-menu2" onClick={() => setIsIndexVisible(!isIndexVisible)}>
+          &#9776; 
+        </div>
+      </div>
+      <div className={`indexRead ${isIndexVisible ? 'visible' : 'hidden'}`}>
         {renderIndex()}
       </div>
       <div className='data-container'>

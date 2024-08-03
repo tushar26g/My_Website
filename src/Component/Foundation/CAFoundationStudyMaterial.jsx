@@ -10,7 +10,7 @@ const StudyMaterial = () => {
   const history = useHistory();
 
   const materials = [
-    { key: 'Accounting', title: 'Accounting', imgSrc: accounting },
+    { key: 'Accounting1001', title: 'Accounting', imgSrc: accounting },
     { key: 'businessLaw', title: 'Business Law', imgSrc: buisness },
     { key: 'quantitativeAptitude', title: 'Quantitative Aptitude', imgSrc: appt },
     { key: 'businessEconomics', title: 'Business Economics', imgSrc: buiEco },
