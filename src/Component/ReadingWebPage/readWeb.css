@@ -1,7 +1,8 @@
 /* General styles */
 .readWebContainer {
   display: flex;
-  
+  margin-top: 4%;
+  /* padding-top: 10px; */
 }
 
 .dark .readWebContainer {
@@ -41,18 +42,20 @@
 }
 
 .index-item:hover {
-  background-color: #e0e0e0;
+  /* background-color: #e0e0e0; */
+  color: #25d366;
 }
 
 .index-item.active {
   font-weight: bold;
-  background-color: #c0c0c0;
+  /* background-color: #c0c0c0; */
+  color: #25d366;
 }
 
 .dark .readWeb h1 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #fda521;
+  color: #25d366;
 }
 
 .dark .readWeb h2 {

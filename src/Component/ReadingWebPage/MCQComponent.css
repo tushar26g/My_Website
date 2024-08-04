@@ -24,7 +24,6 @@
 .dark .index-sidebar {
   background: black;
   color: white;
-  /* border-right: 1px solid #383B38; */
 }
 
 .index-sidebar .logo {
@@ -36,7 +35,6 @@
   background-repeat: no-repeat;
 }
 
-/* Apply Color Overlay to Images in Dark Mode */
 .dark .index-sidebar .logo {
   background-color: #383B38;
   filter: invert(1);
@@ -177,31 +175,51 @@ input[type="radio"] {
   margin-right: 10px;
 }
 
+/* Hamburger Menu */
+.header3 {
+  background-color: #fda521; /* Different background color */
+  /* padding: 10px 0; */
+  position: relative; /* Keep header in the document flow */
+  z-index: 20; 
+}
+
+.hamburger-menu3 {
+  display: none; /* Hidden by default, only visible in mobile view */
+  font-size: 2rem;
+  cursor: pointer;
+  text-align: right;
+  padding: 0 20px;
+  z-index: 30; 
+}
+
+.index-sidebar.visible {
+  display: block;
+}
+
+.dark .header3 {
+  background: #4a4c5c;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .mcq-container {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
   }
-
-  .index-sidebar {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-
   .mcq-content {
-    width: 100%;
-    max-width: 100%;
+      width: 100%;
   }
-}
 
-
-.dark .table-section tr:nth-child(even) {
-  background-color: #383B38;
-  color: white;
-}
-
-.dark .table-section tr:nth-child(odd) {
-  background-color: #555;
-  color: white;
+  .hamburger-menu3 {
+    display: block;
+    padding-top: 12%;
+    font-size: 30px;
+  }
+  .index-sidebar {
+      width: 100%;
+      padding: 10px;
+      display: none;
+  }
+  .index-sidebar.visible {
+      display: block;
+  }
 }

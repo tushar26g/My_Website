@@ -27,11 +27,11 @@
   transition: 0.3s;
 }
 
-.active {
+/* .active {
   background-color: green;
-}
+} */
 
-.logo {
+.NavBar .logo {
   width: 160px;
   display: grid;
   grid-column: 2/3;
@@ -45,7 +45,7 @@
   text-decoration: none;
 }
 
-.logo {
+.NavBar .logo {
   color: #131313;
   text-decoration: none;
 }
@@ -137,11 +137,11 @@ li {
   color: #fff;
 }
 
-.dark .logo a, .dark .right-menu a {
+.dark .NavBar .logo a, .dark .right-menu a {
   color: #fff; /* White color for links in dark mode */
 }
 
-.dark .logo{
+.dark .NavBar .logo{
   color: #fff;
 }
 

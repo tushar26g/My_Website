@@ -68,20 +68,35 @@
 
 .indexRead .topic {
   cursor: pointer;
-  padding: 5px 10px;
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
   text-align: left;
+  font-size: 20px;
+}
+
+.webpage_read h3{
+  font-size: 25px;
+  color: #fda521;
+}
+
+.webpage_read h4{
+  font-size: 20px;
+}
+
+.webpage_read h5{
+  font-size: 15px;
+  margin-bottom: 15px;
 }
 
 .indexRead .topic:hover {
-  background-color: #e0e0e0;
+  /* background-color: #e0e0e0; */
+  color: #25d366;
 }
 
 .indexRead .topic.active {
   font-weight: bold;
-  background-color: #c0c0c0;
+  /* background-color: #c0c0c0; */
+  color: #25d366;
 }
 
 .data-container {
@@ -126,6 +141,10 @@
   text-align: right;
   padding: 0 20px;
   z-index: 30; /* Ensure hamburger menu is above everything */
+}
+
+.dark .header2 {
+  background: #4a4c5c;
 }
 
 @media (max-width: 768px) {
@@ -203,4 +222,13 @@
   .toggle-index-button {
     display: block;
   }
+}
+
+.webpage_read .topic img {
+  background-color: black; /* Set background color to black by default */
+}
+
+.dark .webpage_read .topic img {
+  background-color: white; /* Set background color to white for dark mode */
+  filter: invert(1); /* Invert colors for dark mode */
 }

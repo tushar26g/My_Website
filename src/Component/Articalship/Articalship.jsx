@@ -16,16 +16,18 @@ const Articalship = () => {
   };
 
   return (
-    <div id="articalship" className='Basic'>
-      <h3>Articalship</h3>
-      {components.map((component) => (
-        <div key={component.key} className='HomeButton' onClick={() => handleClick(component.key)}>
-          <div className='content'>
-            <h3>{component.title}</h3>
-            <p>{component.description}</p>
+    <div id="articalship" className='articalship-Basic'>
+      <h1>Articalship</h1>
+      <div className='articalship-content'>
+        {components.map((component) => (
+          <div key={component.key} className='HomeButton' onClick={() => handleClick(component.key)}>
+            <div className='content'>
+              <h3>{component.title}</h3>
+              <p>{component.description}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

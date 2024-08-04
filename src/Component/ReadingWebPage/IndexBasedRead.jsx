@@ -4,6 +4,7 @@ import './IndexBasedRead.css';
 import Topic from '../../Assets/Icon/topic.png';
 import Module from '../../Assets/Icon/module.png';
 import Chapter from '../../Assets/Icon/chapter.png';
+import Lec from '../../Assets/Icon/lecture.png'
 
 const IndexBasedRead = () => {
   const { key } = useParams();
@@ -63,7 +64,7 @@ const IndexBasedRead = () => {
 
   const renderIndex = () => {
     return indexData.map(module => (
-      <div key={module.moduleTitle}>
+      <div className='webpage_read' key={module.moduleTitle}>
         <h3>
           <img src={Module} alt='Module Logo' className='logo' />
           {module.moduleTitle}
@@ -87,6 +88,7 @@ const IndexBasedRead = () => {
                       className={`topic ${currentSection === topic.key ? 'active' : ''}`}
                       onClick={() => navigateToSection(topic.key)}
                     >
+                      <img src={Lec} alt='Module Logo' className='logo' />
                       <h6>{topic.title}</h6>
                     </li>
                   ))}

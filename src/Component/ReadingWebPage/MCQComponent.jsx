@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './MCQComponent.css';
-import Topic from '../../Assets/Icon/topic.png'
-import Module from '../../Assets/Icon/chapter.png'
-import Chapter from '../../Assets/Icon/module.png'
+import Topic from '../../Assets/Icon/topic.png';
+import Module from '../../Assets/Icon/module.png';
+import Chapter from '../../Assets/Icon/chapter.png';
 
 const MCQComponent = () => {
     const [mcq, setMcq] = useState(null);
@@ -10,9 +10,9 @@ const MCQComponent = () => {
     const [showFeedback, setShowFeedback] = useState({});
     const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
     const [index, setIndex] = useState(null); // State to hold the index data
+    const [isIndexVisible, setIsIndexVisible] = useState(false); // State to handle index visibility
 
     useEffect(() => {
-        // Fetch MCQ questions data (just a placeholder, replace with your actual fetch logic)
         fetch('http://localhost:8080/mcqs/Accounting%20Chapter%201%20MCQ')
             .then(response => {
                 if (!response.ok) {
@@ -27,7 +27,6 @@ const MCQComponent = () => {
     }, [currentTopicIndex]);
 
     useEffect(() => {
-        // Fetch MCQ index data
         fetch('http://localhost:8080/mcqindex?key=x')
             .then(response => {
                 if (!response.ok) {
@@ -41,12 +40,10 @@ const MCQComponent = () => {
             });
     }, []);
 
-    // Check if mcq or mcq.questions is null or undefined
     if (!mcq || !mcq.questions) {
         return <div>Loading...</div>;
     }
 
-    // Check if index is null or undefined
     if (!index) {
         return <div>Loading index...</div>;
     }
@@ -76,7 +73,12 @@ const MCQComponent = () => {
 
     return (
         <div className='mcq-container'>
-            <div className='index-sidebar'>
+            <div className="header3">
+                <div className="hamburger-menu3" onClick={() => setIsIndexVisible(!isIndexVisible)}>
+                    &#9776;
+                </div>
+            </div>
+            <div className={`index-sidebar ${isIndexVisible ? 'visible' : 'hidden'}`}>
                 {Array.isArray(index) && index.map((module, modIndex) => (
                     <div key={modIndex}>
                         <h2>

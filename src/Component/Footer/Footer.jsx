@@ -33,24 +33,24 @@ const Footer = () => {
         <div className="footer-nav">
           <h3>Quick Links</h3>
           <ul>
-            <li>
+            <li className="footer-li">
               <NavLink to="/">Home</NavLink>
             </li>
-            <li>
+            <li className="footer-li">
               <NavLink to="/about">About</NavLink>
             </li>
-            <li>
+            <li className="footer-li">
               <NavLink to="/services">Services</NavLink>
             </li>
-            <li>
+            <li className="footer-li">
               <NavLink to="/contact">Contact</NavLink>
             </li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} YourCompany. All Rights Reserved.</p>
-        <p>Made with Love in Maharashtra</p>
+        <p>&copy; {new Date().getFullYear()} OurCompany. All Rights Reserved.</p>
+        Made with love...<span className="heart">❤️</span>
       </div>
     </footer>
   );

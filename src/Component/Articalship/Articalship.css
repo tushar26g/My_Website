@@ -1,3 +1,28 @@
 /* .dark .HomeButton{
     background: black;
 } */
+.articalship-Basic{
+    margin-top: 5%;
+    padding-top: 2%;
+    border-top: 10px solid white;
+}
+
+.dark .articalship-Basic{
+    border-top: 10px solid #4a4c5c;
+}
+
+.articalship-Basic h1{
+    padding-top: 1%;
+    color: #4a4c5c;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.dark .articalship-Basic h1{
+    color: #fda521;
+}
+
+.articalship-content{
+    display: flex;
+    justify-content: center;
+}
