@@ -71,6 +71,8 @@
 }
 
 .table-section {
+  width: 100%;
+  overflow-x: auto;
   margin-bottom: 20px;
 }
 
@@ -84,7 +86,7 @@
 .table-section td {
   border: 1px solid #ccc;
   padding: 8px;
-  width: 50%;
+  width: 10%;
 }
 
 /* New styles for table header and rows */

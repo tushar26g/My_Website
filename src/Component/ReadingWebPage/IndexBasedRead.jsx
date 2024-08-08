@@ -4,7 +4,7 @@ import './IndexBasedRead.css';
 import Topic from '../../Assets/Icon/topic.png';
 import Module from '../../Assets/Icon/module.png';
 import Chapter from '../../Assets/Icon/chapter.png';
-import Lec from '../../Assets/Icon/lecture.png'
+import Lec from '../../Assets/Icon/lecture.png';
 
 const IndexBasedRead = () => {
   const { key } = useParams();
@@ -102,7 +102,7 @@ const IndexBasedRead = () => {
   };
 
   const renderContent = () => {
-    if (!data || !data.bodyIndex || !data.bodyIndex.content) {
+    if (!data || !data.bodyIndex || !Array.isArray(data.bodyIndex.content)) {
       return <p>No content available</p>;
     }
 
@@ -115,6 +115,8 @@ const IndexBasedRead = () => {
               return <TextSection key={index} content={item.content} />;
             case 'table':
               return <TableSection key={index} title={item.title} content={item.content} />;
+            case 'list':
+              return <ListSection key={index} content={item.content} />;
             default:
               return null;
           }
@@ -157,28 +159,49 @@ const TextSection = ({ content }) => {
 };
 
 const TableSection = ({ title, content }) => {
-  const headers = content.length > 0 ? Object.keys(content[0]) : [];
+  if (!content || !Array.isArray(content.rows) || !Array.isArray(content.headers)) {
+    return <p>No table content available</p>;
+  }
+
   return (
     <div className="table-section">
       {title && <h2>{title}</h2>}
       <table>
         <thead>
           <tr>
-            {headers.map(header => (
-              <th key={header}>{header}</th>
+            {content.headers.map((header, index) => (
+              <th key={index}>{header}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {content.map((row, rowIndex) => (
+          {content.rows.map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {headers.map(header => (
-                <td key={header}>{row[header]}</td>
+              {row.map((cell, cellIndex) => (
+                <td key={cellIndex}>{cell}</td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
+    </div>
+  );
+};
+
+const ListSection = ({ content }) => {
+  if (!Array.isArray(content)) {
+    return <p>No list content available</p>;
+  }
+
+  return (
+    <div className="list-section">
+      <ul >
+        {content.map((item, index) => (
+          <li key={index}>
+            <p>{item.content}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

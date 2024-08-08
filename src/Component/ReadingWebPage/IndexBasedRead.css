@@ -126,6 +126,26 @@
   padding: 8px;
 }
 
+
+.list-section ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: block;
+  flex-direction: column;
+}
+
+.list-section li {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.list-section li::marker {
+  color: #333;
+}
+
+
 .header2  {
   /* width: 100%; */
   background-color: #fda521; /* Different background color */
