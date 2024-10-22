@@ -1,12 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import accountingQB from '../../Assets/Foundation/AccountingQB.jpg';
 import apptQB from '../../Assets/Foundation/ApptieQB.jpg';
 import buisnessQB from '../../Assets/Foundation/BLQB.jpg';
 import buiEcoQB from '../../Assets/Foundation/BEQB.jpg';
 
 const CAFoundationQuestionBank = () => {
-  const history = useHistory();
+  const navigate = useNavigate(); // Correct useNavigate hook
 
   const materials = [
     { key: 'Accounting%20Chapter%201%20MCQ', title: 'Accounting', imgSrc: accountingQB },
@@ -16,7 +16,7 @@ const CAFoundationQuestionBank = () => {
   ];
 
   const handleClick = (key) => {
-    history.push(`/mcqs/${key}`);
+    navigate(`/mcqs/${key}`); // Correct navigation function
   };
 
   return (

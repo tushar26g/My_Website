@@ -1,9 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Articalship.css';
 
 const Articalship = () => {
-  const history = useHistory();
+  const navigate = useNavigate(); // Use useNavigate hook
 
   const components = [
     { key: 'excel1002', title: 'Excel', description: 'Excel' },
@@ -12,7 +12,7 @@ const Articalship = () => {
   ];
 
   const handleClick = (key) => {
-    history.push(`/readWeb/${key}`);
+    navigate(`/readWeb/${key}`); // Use navigate for routing
   };
 
   return (

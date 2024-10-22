@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import accounting from '../../Assets/Foundation/Accounting.jpg';
 import appt from '../../Assets/Foundation/Apptie.jpg';
 import buisness from '../../Assets/Foundation/BuisnessLaw.jpg';
@@ -7,7 +7,7 @@ import buiEco from '../../Assets/Foundation/BusinessEconomics.jpg';
 // import './StudyMaterial.css';
 
 const StudyMaterial = () => {
-  const history = useHistory();
+  const navigate = useNavigate(); // Correct useNavigate hook
 
   const materials = [
     { key: 'Accounting1001', title: 'Accounting', imgSrc: accounting },
@@ -17,7 +17,7 @@ const StudyMaterial = () => {
   ];
 
   const handleClick = (key) => {
-    history.push(`/indexBasedRead/${key}`);
+    navigate(`/indexBasedRead/${key}`); // Correct navigation function
   };
 
   return (

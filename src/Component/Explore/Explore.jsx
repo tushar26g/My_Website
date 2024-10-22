@@ -1,6 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import './Explore.css';
 import bcom from '../../Assets/Home/bcom.png';
 import caHub from '../../Assets/Home/group.jpg';
@@ -12,7 +11,7 @@ import inter from '../../Assets/Home/Inter.jpg';
 import found from '../../Assets/Home/foundation.png';
 
 const Basic = () => {
-  const history = useHistory();
+  const navigate = useNavigate(); // Use the correct hook
 
   const scrollToArticalship = () => {
     const articalshipElement = document.getElementById('articalship');
@@ -29,7 +28,7 @@ const Basic = () => {
   };
 
   const handleNavigateToJob = () => {
-    history.push('/Job');
+    navigate('/Job'); // Call navigate directly
   };
 
   return (
@@ -41,7 +40,6 @@ const Basic = () => {
           <p>The greatest financial jobs opportunities are packed here</p>
         </div>
       </div>
-
       <div className='HomeButton' onClick={scrollToCAFoundation}>
         <div><img src={found} alt="Example" /></div>
         <div className='content'>
@@ -49,7 +47,6 @@ const Basic = () => {
           <p>CA Final exam study material, question bank, PYQ</p>
         </div>
       </div>
-
       <div className='HomeButton'>
         <div><img src={inter} alt="Example" /></div>
         <div className='content'>
@@ -57,7 +54,6 @@ const Basic = () => {
           <p>CA Inter exam study material, question bank, PYQ</p>
         </div>
       </div>
-
       <div className='HomeButton'>
         <div><img src={CA} alt="Example" /></div>
         <div className='content'>
@@ -65,7 +61,6 @@ const Basic = () => {
           <p>CA Final exam study material, question bank, PYQ</p>
         </div>
       </div>
-
       <div className='HomeButton'>
         <div><img src={tax} alt="Example" /></div>
         <div className='content'>
@@ -73,15 +68,13 @@ const Basic = () => {
           <p>All tax law</p>
         </div>
       </div>
-
       <div className='HomeButton' onClick={scrollToArticalship}>
         <div><img src={articalship} alt="Example" /></div>
         <div className='content'>
-          <h3>Articleship</h3>
+          <h3>Articalship</h3>
           <p>All the tools info use in Articalship</p>
         </div>
       </div>
-
       <div className='HomeButton'>
         <div><img src={intervivew} alt="Example" /></div>
         <div className='content'>
@@ -89,7 +82,6 @@ const Basic = () => {
           <p>Imp interview questions on all sub required job</p>
         </div>
       </div>
-
       <div className='HomeButton'>
         <div><img src={bcom} alt="Example" /></div>
         <div className='content'>

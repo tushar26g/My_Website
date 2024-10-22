@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Changed useHistory to useNavigate
 import './readWeb.css';
 
 const ReadWeb = () => {
   const { key } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate(); // Changed history to navigate
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ const ReadWeb = () => {
 
   useEffect(() => {
     // Fetch detailed data
-    fetch(`http://localhost:8080/section?key=${key}`)
+    fetch(`http://localhost:8080/public/section?key=${key}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -32,7 +32,7 @@ const ReadWeb = () => {
       });
 
     // Fetch index data
-    fetch(`http://localhost:8080/index?key=${key}`)
+    fetch(`http://localhost:8080/public/index?key=${key}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -48,7 +48,7 @@ const ReadWeb = () => {
   }, [key]);
 
   const navigateToSection = (sectionKey) => {
-    history.push(`/readWeb/${sectionKey}`);
+    navigate(`/readWeb/${sectionKey}`); // Updated navigation function
     setShowIndex(false); // Hide index on section navigation
   };
 

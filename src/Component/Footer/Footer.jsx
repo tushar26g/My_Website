@@ -50,7 +50,7 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} OurCompany. All Rights Reserved.</p>
-        Made with love...<span className="heart">❤️</span>
+        Made with love <span className="heart">❤️</span> by ambitious people
       </div>
     </footer>
   );

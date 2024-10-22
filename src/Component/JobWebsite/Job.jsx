@@ -8,7 +8,7 @@ const DataFetchingComponent = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/allPosts')
+    axios.get('http://localhost:8080/public/allPosts')
       .then(response => {
         setData(response.data);
         setLoading(false);

@@ -13,7 +13,7 @@ const MCQComponent = () => {
     const [isIndexVisible, setIsIndexVisible] = useState(false); // State to handle index visibility
 
     useEffect(() => {
-        fetch('http://localhost:8080/mcqs/Accounting%20Chapter%201%20MCQ')
+        fetch('http://localhost:8080/public/mcqs/Accounting%20Chapter%201%20MCQ')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -27,7 +27,7 @@ const MCQComponent = () => {
     }, [currentTopicIndex]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/mcqindex?key=x')
+        fetch('http://localhost:8080/public/mcqindex?key=x')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

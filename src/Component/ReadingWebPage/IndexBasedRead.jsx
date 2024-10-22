@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './IndexBasedRead.css';
 import Topic from '../../Assets/Icon/topic.png';
 import Module from '../../Assets/Icon/module.png';
@@ -8,7 +8,7 @@ import Lec from '../../Assets/Icon/lecture.png';
 
 const IndexBasedRead = () => {
   const { key } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate(); // Use useNavigate hook
   const [data, setData] = useState(null);
   const [indexData, setIndexData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ const IndexBasedRead = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:8080/indexBasedWebData?key=${key}`);
+        const response = await fetch(`http://localhost:8080/public/indexBasedWebData?key=${key}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -36,7 +36,7 @@ const IndexBasedRead = () => {
     const fetchIndexData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:8080/indexBasedRead?key=${key}`);
+        const response = await fetch(`http://localhost:8080/public/indexBasedRead?key=${key}`);
         if (!response.ok) {
           throw new Error('Failed to fetch index data');
         }
@@ -58,7 +58,7 @@ const IndexBasedRead = () => {
   }, [key]);
 
   const navigateToSection = sectionKey => {
-    history.push(`/indexBasedRead/${sectionKey}`);
+    navigate(`/indexBasedRead/${sectionKey}`); // Use navigate for routing
     setIsIndexVisible(false); // Hide index on section navigation
   };
 
@@ -141,7 +141,7 @@ const IndexBasedRead = () => {
     <div className="readWeb-Container">
       <div className="header2">
         <div className="hamburger-menu2" onClick={() => setIsIndexVisible(!isIndexVisible)}>
-          &#9776; 
+          &#9776;
         </div>
       </div>
       <div className={`indexRead ${isIndexVisible ? 'visible' : 'hidden'}`}>
@@ -195,7 +195,7 @@ const ListSection = ({ content }) => {
 
   return (
     <div className="list-section">
-      <ul >
+      <ul>
         {content.map((item, index) => (
           <li key={index}>
             <p>{item.content}</p>
