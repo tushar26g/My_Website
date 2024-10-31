@@ -25,6 +25,7 @@ const IndexBasedRead = () => {
           throw new Error('Failed to fetch data');
         }
         const data = await response.json();
+        console.log(data);
         setData(data);
       } catch (error) {
         setError(error);
@@ -117,6 +118,16 @@ const IndexBasedRead = () => {
               return <TableSection key={index} title={item.title} content={item.content} />;
             case 'list':
               return <ListSection key={index} content={item.content} />;
+            case 'heading':
+              return <HeadingSection key={index} content={item.content} />;
+            case 'example':
+              return <ExampleSection key={index} content={item.content} />;
+            case 'subHeading':
+              return <SubHeadingSection key={index} content={item.content} />;
+            case 'boldPoint':
+              return <BoldPintSection key={index} content={item.content} />;
+            case 'properties':
+              return <PropertiesSection key={index} content={item.content} />;
             default:
               return null;
           }
@@ -157,6 +168,48 @@ const IndexBasedRead = () => {
 const TextSection = ({ content }) => {
   return <div className="text-section"><p>{content}</p></div>;
 };
+
+const BoldPintSection = ({ content }) => {
+  return <div className="boldPoint-section"><h3>{content}</h3></div>;
+};
+const HeadingSection = ({ content }) => {
+  return <div className="heading-section_forPage"><p>{content}</p></div>;
+};
+
+const SubHeadingSection = ({ content }) => {
+  return <div className="subHeading-section_forPage"><p>{content}</p></div>;
+};
+
+const ExampleSection = ({ content }) => {
+  return (
+    <div className="example-section">
+      <h4>Example</h4>
+      <div className="example-content">
+        {content.map((line, index) => (
+          <p key={index}>{line.content}</p> // Access the 'content' property of each line
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const PropertiesSection = ({ content }) => {
+  if (!Array.isArray(content)) {
+    return <p>No list content available</p>;
+  }
+
+  return (
+    <div className="list-section">
+      <ul>
+        {content.map((item, index) => (
+          <li key={index}>
+            <p>{item.content}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 const TableSection = ({ title, content }) => {
   if (!content || !Array.isArray(content.rows) || !Array.isArray(content.headers)) {

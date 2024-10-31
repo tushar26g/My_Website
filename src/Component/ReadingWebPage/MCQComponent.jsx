@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import './MCQComponent.css';
 import Topic from '../../Assets/Icon/topic.png';
 import Module from '../../Assets/Icon/module.png';
 import Chapter from '../../Assets/Icon/chapter.png';
 
 const MCQComponent = () => {
+    const { key } = useParams();
     const [mcq, setMcq] = useState(null);
     const [selectedOptions, setSelectedOptions] = useState({});
     const [showFeedback, setShowFeedback] = useState({});
@@ -13,18 +15,27 @@ const MCQComponent = () => {
     const [isIndexVisible, setIsIndexVisible] = useState(false); // State to handle index visibility
 
     useEffect(() => {
-        fetch('http://localhost:8080/public/mcqs/Accounting%20Chapter%201%20MCQ')
+        fetch(`http://localhost:8080/public/mcqs?key=${encodeURIComponent(key)}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json();
+                return response.text(); // Get raw text response
             })
-            .then(mcqData => setMcq(mcqData))
+            .then(text => {
+                console.log('Response text:', text); // Log the response to debug
+                try {
+                    const mcqData = JSON.parse(text); // Parse text to JSON
+                    setMcq(mcqData);
+                } catch (error) {
+                    console.error('JSON parsing error:', error);
+                }
+            })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
             });
     }, [currentTopicIndex]);
+    
 
     useEffect(() => {
         fetch('http://localhost:8080/public/mcqindex?key=x')
@@ -114,7 +125,7 @@ const MCQComponent = () => {
                                     key={option}
                                     className={
                                         showFeedback[index]
-                                            ? option === question.correctAnswer
+                                            ? option === question.ans   // Changed to "ans"
                                                 ? 'correct'
                                                 : option === selectedOptions[index]
                                                 ? 'incorrect'
@@ -137,8 +148,17 @@ const MCQComponent = () => {
                         </ul>
                         {showFeedback[index] && (
                             <div className='feedback'>
-                                <p>{`Correct ans: ${question.correctAnswer}`}</p>
-                                {question.reason && <p>{question.reason}</p>}
+                                <h4>{`Ans      :   ${question.ans}`}</h4> {/* Updated to use "ans" */}
+                                {question.solution && (
+                                    <div>
+                                        <h4>Solution:</h4>
+                                        <ul>
+                                            {question.solution.map((step, stepIndex) => (
+                                                <li className="stepLi" key={stepIndex}>{step}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>
@@ -150,6 +170,7 @@ const MCQComponent = () => {
                     <button onClick={handleNextTopicClick}>Next Topic</button>
                 </div>
             </div>
+
         </div>
     );
 };

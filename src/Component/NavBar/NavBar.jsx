@@ -88,7 +88,7 @@ const NavBar = ({ theme, setTheme }) => {
     <nav className={`navbar ${theme}`}>
       <div className='NavBar' onClick={handleHomeClick}>
         <Link to="/" className='logo'>
-          <h1>PaisaToPaisa</h1>
+          <h1>CASolution</h1>
         </Link>
       </div>
       <div className='Menu' onClick={() => setMenuOpen(!menuOpen)}>

@@ -7,6 +7,7 @@
   font-family: Arial, sans-serif;
   flex-direction: row;
   justify-content: space-between;
+  font-family: fantasy;
 }
 
 .dark .readWeb-Container{
@@ -251,4 +252,38 @@
 .dark .webpage_read .topic img {
   background-color: white; /* Set background color to white for dark mode */
   filter: invert(1); /* Invert colors for dark mode */
+}
+
+.example-section {
+  margin-bottom: 20px;
+}
+
+.example-box {
+  padding: 15px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+}
+
+.example-box strong {
+  font-weight: bold;
+}
+
+.solution-list {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.heading-section_forPage{
+  padding-bottom: 8px;
+  color: #fda521;
+}
+
+.subHeading-section_forPage{
+  font: bolder;
+  color: red;
+}
+
+.boldPoint-section{
+  font:bold;
 }

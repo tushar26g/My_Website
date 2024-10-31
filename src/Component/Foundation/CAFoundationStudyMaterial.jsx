@@ -12,7 +12,7 @@ const StudyMaterial = () => {
   const materials = [
     { key: 'Accounting1001', title: 'Accounting', imgSrc: accounting },
     { key: 'businessLaw', title: 'Business Law', imgSrc: buisness },
-    { key: 'quantitativeAptitude', title: 'Quantitative Aptitude', imgSrc: appt },
+    { key: 'Ratios', title: 'Quantitative Aptitude', imgSrc: appt },
     { key: 'businessEconomics', title: 'Business Economics', imgSrc: buiEco },
   ];
 

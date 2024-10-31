@@ -7,6 +7,7 @@
   font-family: Arial, sans-serif;
   flex-direction: row;
   justify-content: space-between;
+  background: #f4e7fb;
 }
 
 /* Dark Mode Styles */
@@ -99,7 +100,7 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: #F0F8FF;
 }
 
 .dark .question-block {
@@ -141,11 +142,13 @@
 }
 
 .question-block li:nth-child(odd) label {
-  background-color: #c0c0c0;
+  background-color: #FAF6F1;
+  border: 1px solid;
 }
 
 .dark .question-block li:nth-child(odd) label {
   background-color: #555;
+  border: 1px solid;
 }
 
 .question-block li.correct label {
@@ -222,4 +225,8 @@ input[type="radio"] {
   .index-sidebar.visible {
       display: block;
   }
+}
+
+.stepLi{
+  text-align: left;
 }
