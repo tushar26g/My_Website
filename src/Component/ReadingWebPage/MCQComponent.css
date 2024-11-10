@@ -18,6 +18,8 @@
 
 .index-sidebar {
   width: 20%;
+  min-width: 20%;
+  max-width: 20%;
   padding: 20px;
   background-color: #f0f0f0;
 }
@@ -91,7 +93,7 @@
 }
 
 .mcq-content {
-  width: 80%;
+  /* width: 80%; */
   padding: 20px;
 }
 
@@ -101,6 +103,11 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #F0F8FF;
+  /* width: 80%; */
+}
+
+.navigation-buttons{
+  /* width: 80%; */
 }
 
 .dark .question-block {
@@ -229,4 +236,14 @@ input[type="radio"] {
 
 .stepLi{
   text-align: left;
+}
+
+.dark .solution{
+  color: #FFD25E;
+}
+
+.ads{
+  width: 15%;
+  min-width: 15%;
+  max-width: 15%;
 }

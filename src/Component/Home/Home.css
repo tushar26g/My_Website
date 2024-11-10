@@ -1,14 +1,3 @@
-/* src/components/Home.css */
-
-/* body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  } */
-
-.dark .App{
-  background: #222;
-}
-  
 .dark .table-section tr:nth-child(even) {
   background-color: white;
   color: black;

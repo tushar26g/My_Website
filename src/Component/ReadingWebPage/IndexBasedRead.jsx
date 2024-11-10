@@ -109,7 +109,7 @@ const IndexBasedRead = () => {
 
     return (
       <div className="readWeb">
-        <h1>{data.heading}</h1>
+        <h1 className='indexBasedHeading'>{data.heading}</h1>
         {data.bodyIndex.content.map((item, index) => {
           switch (item.type) {
             case 'text':
@@ -122,8 +122,6 @@ const IndexBasedRead = () => {
               return <HeadingSection key={index} content={item.content} />;
             case 'example':
               return <ExampleSection key={index} content={item.content} />;
-            case 'subHeading':
-              return <SubHeadingSection key={index} content={item.content} />;
             case 'boldPoint':
               return <BoldPintSection key={index} content={item.content} />;
             case 'properties':
@@ -161,36 +159,49 @@ const IndexBasedRead = () => {
       <div className='data-container'>
         {renderContent()}
       </div>
+      <div className='ads'>
+                <p>Ads</p>
+      </div>
     </div>
   );
 };
 
 const TextSection = ({ content }) => {
-  return <div className="text-section"><p>{content}</p></div>;
+  return <div className="text-section"><p>{renderContent(content)}</p></div>;
 };
 
 const BoldPintSection = ({ content }) => {
   return <div className="boldPoint-section"><h3>{content}</h3></div>;
 };
 const HeadingSection = ({ content }) => {
-  return <div className="heading-section_forPage"><p>{content}</p></div>;
-};
-
-const SubHeadingSection = ({ content }) => {
-  return <div className="subHeading-section_forPage"><p>{content}</p></div>;
+  return <div className="heading-section_forPage"><h2>{content}</h2></div>;
 };
 
 const ExampleSection = ({ content }) => {
   return (
     <div className="example-section">
-      <h4>Example</h4>
-      <div className="example-content">
-        {content.map((line, index) => (
-          <p key={index}>{line.content}</p> // Access the 'content' property of each line
-        ))}
-      </div>
-    </div>
+  <div className="example-content">
+    {content.map((line, index) => (
+        <p key={index}>{renderContent(line.content)}</p>
+    ))}
+  </div>
+</div>
+
   );
+};
+
+const renderContent = (text) => {
+  // Split the text by **bold** markers
+  const parts = text.split(/(\*\*[^*]+\*\*)/);
+  
+  return parts.map((part, index) => {
+    // If part is wrapped in **, render it as bold
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+    // Otherwise, render it as plain text
+    return part;
+  });
 };
 
 const PropertiesSection = ({ content }) => {
@@ -203,7 +214,7 @@ const PropertiesSection = ({ content }) => {
       <ul>
         {content.map((item, index) => (
           <li key={index}>
-            <p>{item.content}</p>
+            <p>{renderContent(item.content)}</p>
           </li>
         ))}
       </ul>
@@ -212,9 +223,13 @@ const PropertiesSection = ({ content }) => {
 }
 
 const TableSection = ({ title, content }) => {
-  if (!content || !Array.isArray(content.rows) || !Array.isArray(content.headers)) {
+  console.log(content);
+  if (!content || !Array.isArray(content) || content.length === 0) {
     return <p>No table content available</p>;
   }
+
+  // Extract headers from the first object in content
+  const headers = Object.keys(content[0]);
 
   return (
     <div className="table-section">
@@ -222,16 +237,16 @@ const TableSection = ({ title, content }) => {
       <table>
         <thead>
           <tr>
-            {content.headers.map((header, index) => (
+            {headers.map((header, index) => (
               <th key={index}>{header}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {content.rows.map((row, rowIndex) => (
+          {content.map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex}>{cell}</td>
+              {headers.map((header, cellIndex) => (
+                <td key={cellIndex}>{row[header]}</td>
               ))}
             </tr>
           ))}
@@ -240,6 +255,7 @@ const TableSection = ({ title, content }) => {
     </div>
   );
 };
+
 
 const ListSection = ({ content }) => {
   if (!Array.isArray(content)) {
@@ -250,7 +266,7 @@ const ListSection = ({ content }) => {
     <div className="list-section">
       <ul>
         {content.map((item, index) => (
-          <li key={index}>
+          <li className='indexBasedReadList' key={index}>
             <p>{item.content}</p>
           </li>
         ))}
