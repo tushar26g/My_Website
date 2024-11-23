@@ -4,6 +4,8 @@ import './MCQComponent.css';
 import Topic from '../../Assets/Icon/topic.png';
 import Module from '../../Assets/Icon/module.png';
 import Chapter from '../../Assets/Icon/chapter.png';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css'
 
 const MCQComponent = () => {
     const { key } = useParams();
@@ -68,6 +70,29 @@ const MCQComponent = () => {
         return <div>Loading index...</div>;
     }
 
+    const renderTextWithMath = (text) => {
+        const parts = text.split(/(\\\(.*?\\\))/g);
+        return parts.map((part, index) => {
+            if (part.startsWith("\\(") && part.endsWith("\\)")) {
+                const equation = part.slice(2, -2); // Remove \( and \)
+                return (
+                    <React.Fragment key={index}>
+                        <InlineMath style={{ fontSize: '17px'}}>{equation}</InlineMath>
+                        <span style={{ marginRight: '0.2em' }}></span> {/* Small space after the math */}
+                    </React.Fragment>
+                );
+            } else {
+                return (
+                    <React.Fragment key={index}>
+                        <span>{part}</span>
+                        <span style={{ marginRight: '0.2em' }}></span> {/* Small space after text */}
+                    </React.Fragment>
+                );
+            }
+        });
+    };
+    
+
     const handleOptionClick = (questionIndex, option) => {
         setSelectedOptions({
             ...selectedOptions,
@@ -127,54 +152,54 @@ const MCQComponent = () => {
                 ))}
             </div>
             <div className='mcq-content'>
-                <h1 className='indexBasedHeading'>{mcq.heading}</h1>
-                <p>{mcq.description}</p>
-                {mcq.questions && mcq.questions.map((question, index) => (
-                    <div key={index} className='question-block'>
-                        <h3>{question.question}</h3>
-                        <ul>
-                            {question.options.map(option => (
-                                <li
-                                    key={option}
-                                    className={
-                                        showFeedback[index]
-                                            ? option === question.ans
-                                                ? 'correct'
-                                                : option === selectedOptions[index]
-                                                ? 'incorrect'
-                                                : ''
+            <h1 className='indexBasedHeading'>{mcq.heading}</h1>
+            <p>{mcq.description}</p>
+            {mcq.questions && mcq.questions.map((question, qIndex) => (
+                <div key={qIndex} className='question-block'>
+                    <h3>{renderTextWithMath(question.question)}</h3>
+                    <ul>
+                        {question.options.map((option, optIndex) => (
+                            <li
+                                key={optIndex}
+                                className={
+                                    showFeedback[qIndex]
+                                        ? option === question.ans
+                                            ? 'correct'
+                                            : option === selectedOptions[qIndex]
+                                            ? 'incorrect'
                                             : ''
-                                    }
-                                >
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name={`question-${index}`}
-                                            value={option}
-                                            checked={selectedOptions[index] === option}
-                                            onChange={() => handleOptionClick(index, option)}
-                                        />
-                                        {option}
-                                    </label>
-                                </li>
-                            ))}
-                        </ul>
-                        {showFeedback[index] && (
-                            <div className='feedback'>
-                                <h4><span className='solution'>Ans:</span> {question.ans}</h4>
-                                {question.solution && (
-                                    <div>
-                                        <h4 className='solution'>Solution:</h4>
-                                        <ul>
-                                            {question.solution.map((step, stepIndex) => (
-                                                <li className="stepLi" key={stepIndex}>{step}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                                        : ''
+                                }
+                            >
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name={`question-${qIndex}`}
+                                        value={option}
+                                        checked={selectedOptions[qIndex] === option}
+                                        onChange={() => handleOptionClick(qIndex, option)}
+                                    />
+                                    {renderTextWithMath(option)}
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                    {showFeedback[qIndex] && (
+                        <div className='feedback'>
+                            <h4><span className='solution'>Ans:</span> {renderTextWithMath(question.ans)}</h4>
+                            {question.solution && (
+                                <div>
+                                    <h4 className='solution'>Solution:</h4>
+                                    <ul className='mcqUl'>
+                                        {question.solution.map((step, stepIndex) => (
+                                            <li className="stepLi" key={stepIndex}>{renderTextWithMath(step)}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
                 ))}
                 
                 <div className='navigation-buttons'>

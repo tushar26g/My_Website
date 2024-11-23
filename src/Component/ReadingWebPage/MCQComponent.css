@@ -93,7 +93,7 @@
 }
 
 .mcq-content {
-  /* width: 80%; */
+  width: 80%;
   padding: 20px;
 }
 
@@ -236,6 +236,11 @@ input[type="radio"] {
 
 .stepLi{
   text-align: left;
+  font-size: 17px;
+}
+
+.stepLi:hover {
+  text-decoration: none;
 }
 
 .dark .solution{
@@ -246,4 +251,8 @@ input[type="radio"] {
   width: 15%;
   min-width: 15%;
   max-width: 15%;
+}
+
+.inline-math {
+  font-size: 16px; /* Set desired font size */
 }
