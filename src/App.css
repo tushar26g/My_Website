@@ -8,13 +8,13 @@
 .App{
   width: 100vw;
   min-height: 100vh;
-  /* background: #f4e7fb; */
+  background: #f4e7fb; 
   /* background: linear-gradient(#F4C0B3, #AFA7BB, #085467); */
 }
 
-/* .App.dark{
+.dark .App{
   background: #101415;
-} */
+}
 
 .Nav {
   position: fixed;

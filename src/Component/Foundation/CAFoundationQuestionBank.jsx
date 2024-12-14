@@ -10,7 +10,7 @@ const CAFoundationQuestionBank = () => {
 
   const materials = [
     { key: 'Accounting%20Chapter%201%20MCQ', title: 'Accounting', imgSrc: accountingQB },
-    { key: 'BusinessLawQB', title: 'Business Law', imgSrc: buisnessQB },
+    { key: 'dec-2018-Math', title: 'Business Law', imgSrc: buisnessQB },
     { key: 'ratio-mcq', title: 'Quantitative Aptitude', imgSrc: apptQB },
     { key: 'BusinessEconomicsQB', title: 'Business Economics', imgSrc: buiEcoQB },
   ];

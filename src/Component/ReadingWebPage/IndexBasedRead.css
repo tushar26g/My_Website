@@ -196,7 +196,8 @@
   padding: 2%;
   font-family: fantasy;
   background-color: #FFF9E3;
-  font-size: 17px;
+  font-size: 18px;
+  line-height: 2;
 }
 
 .dark .example-section{

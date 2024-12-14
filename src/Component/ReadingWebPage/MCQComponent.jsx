@@ -82,12 +82,13 @@ const MCQComponent = () => {
                     </React.Fragment>
                 );
             } else {
-                return (
-                    <React.Fragment key={index}>
-                        <span>{part}</span>
-                        <span style={{ marginRight: '0.2em' }}></span> {/* Small space after text */}
-                    </React.Fragment>
-                );
+                return <span key={index} style={{ whiteSpace: 'pre-wrap' }}>{part}</span>;
+                // return (
+                //     <React.Fragment key={index}>
+                //         <span>{part}</span>
+                //         <span style={{ marginRight: '0.2em' }}></span> {/* Small space after text */}
+                //     </React.Fragment>
+                // );
             }
         });
     };

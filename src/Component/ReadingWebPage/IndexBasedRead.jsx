@@ -5,6 +5,8 @@ import Topic from '../../Assets/Icon/topic.png';
 import Module from '../../Assets/Icon/module.png';
 import Chapter from '../../Assets/Icon/chapter.png';
 import Lec from '../../Assets/Icon/lecture.png';
+import { InlineMath } from 'react-katex';
+import 'katex/dist/katex.min.css'
 
 const IndexBasedRead = () => {
   const { key } = useParams();
@@ -167,7 +169,7 @@ const IndexBasedRead = () => {
 };
 
 const TextSection = ({ content }) => {
-  return <div className="text-section"><p>{renderContent(content)}</p></div>;
+  return <div className="text-section"><p>{renderTextWithMathAndBold(content)}</p></div>;
 };
 
 const BoldPintSection = ({ content }) => {
@@ -180,29 +182,60 @@ const HeadingSection = ({ content }) => {
 const ExampleSection = ({ content }) => {
   return (
     <div className="example-section">
-  <div className="example-content">
-    {content.map((line, index) => (
-        <p key={index}>{renderContent(line.content)}</p>
-    ))}
-  </div>
-</div>
-
+      <div className="example-content">
+        {content.map((item, index) => (
+          <div key={index}>
+            {renderTextWithMathAndBold(item.content)}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
-const renderContent = (text) => {
-  // Split the text by **bold** markers
-  const parts = text.split(/(\*\*[^*]+\*\*)/);
-  
-  return parts.map((part, index) => {
-    // If part is wrapped in **, render it as bold
-    if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={index}>{part.slice(2, -2)}</strong>;
-    }
-    // Otherwise, render it as plain text
-    return part;
-  });
+const renderTextWithMathAndBold = (text) => {
+  // If the input is an array, process each element recursively
+  if (Array.isArray(text)) {
+    return text.map((line, index) => (
+      <p key={index}>{renderTextWithMathAndBold(line)}</p>
+    ));
+  }
+
+  // Ensure the input is a string before applying split
+  if (typeof text === "string") {
+    // Split text by **bold** and \(math\) markers
+    const parts = text.split(/(\*\*[^*]+\*\*|\\\(.*?\\\))/g);
+
+    return parts.map((part, index) => {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        // If part is bold text (wrapped in **), render as bold
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      } else if (part.startsWith("\\(") && part.endsWith("\\)")) {
+        // If part is a math expression (wrapped in \( \)), render as InlineMath
+        const equation = part.slice(2, -2); // Remove \( and \)
+        return (
+          <React.Fragment key={index}>
+            <InlineMath style={{ fontSize: '17px' }}>{equation}</InlineMath>
+            <span style={{ marginRight: '0.2em' }}></span>
+          </React.Fragment>
+        );
+      } else {
+        // Otherwise, render as plain text
+        return (
+          <React.Fragment key={index}>
+            <span>{part}</span>
+            <span style={{ marginRight: '0.2em' }}></span>
+          </React.Fragment>
+        );
+      }
+    });
+  }
+
+  // Return null for unexpected input types
+  return null;
 };
+
+
 
 const PropertiesSection = ({ content }) => {
   if (!Array.isArray(content)) {
@@ -214,7 +247,7 @@ const PropertiesSection = ({ content }) => {
       <ul>
         {content.map((item, index) => (
           <li key={index}>
-            <p>{renderContent(item.content)}</p>
+            <p>{renderTextWithMathAndBold(item.content)}</p>
           </li>
         ))}
       </ul>
@@ -223,7 +256,6 @@ const PropertiesSection = ({ content }) => {
 }
 
 const TableSection = ({ title, content }) => {
-  console.log(content);
   if (!content || !Array.isArray(content) || content.length === 0) {
     return <p>No table content available</p>;
   }
@@ -233,12 +265,12 @@ const TableSection = ({ title, content }) => {
 
   return (
     <div className="table-section">
-      {title && <h2>{title}</h2>}
+      {title && <h2>{renderTextWithMathAndBold(title)}</h2>}
       <table>
         <thead>
           <tr>
             {headers.map((header, index) => (
-              <th key={index}>{header}</th>
+              <th key={index}>{renderTextWithMathAndBold(header)}</th>
             ))}
           </tr>
         </thead>
@@ -246,7 +278,7 @@ const TableSection = ({ title, content }) => {
           {content.map((row, rowIndex) => (
             <tr key={rowIndex}>
               {headers.map((header, cellIndex) => (
-                <td key={cellIndex}>{row[header]}</td>
+                <td key={cellIndex}>{renderTextWithMathAndBold(row[header])}</td>
               ))}
             </tr>
           ))}
@@ -257,6 +289,7 @@ const TableSection = ({ title, content }) => {
 };
 
 
+
 const ListSection = ({ content }) => {
   if (!Array.isArray(content)) {
     return <p>No list content available</p>;
@@ -264,13 +297,7 @@ const ListSection = ({ content }) => {
 
   return (
     <div className="list-section">
-      <ul>
-        {content.map((item, index) => (
-          <li className='indexBasedReadList' key={index}>
-            <p>{item.content}</p>
-          </li>
-        ))}
-      </ul>
+      <h1>List section please change it.</h1>
     </div>
   );
 };
